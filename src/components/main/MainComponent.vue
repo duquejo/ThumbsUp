@@ -2,24 +2,29 @@
   <main role="main">
     <div class="main__header">
       <span class="main__header-title">Previous Rulings</span>
-      <select class="main__header-select">
-        <option value="">List</option>
-        <option value="">Grid</option>
+      <select v-model="selected" class="main__header-select">
+        <option value="list">List</option>
+        <option value="grid">Grid</option>
       </select>
     </div>
-    <ol class="main__container">
-      <CardComponent v-for="celeb in celebs" :celebrity="celeb" />
+    <ol class="main__container" :class="layeredClasses">
+      <CardComponent v-for="celeb in celebs" :celebrity="celeb" :is-layered="selected === 'list'" />
     </ol>
   </main>
 </template>
 
 <script setup lang="ts">
 import { data } from '@/data.json';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import type { ICelebrity } from '../../interfaces/Celebrities';
 import CardComponent from '@/components/card/CardComponent.vue';
 
 const celebs = ref<ICelebrity[]>(data);
+const selected = defineModel<'list'|'grid'>({ default: 'grid' });
+
+const layeredClasses = computed(() => ({
+  'layered': selected.value === 'list' ?  true : false,
+}))
 </script>
 
 <style scoped lang="scss">
@@ -41,8 +46,14 @@ main {
       &-select {
         width: 8.1875rem;
         height: 100%;
+        border-radius: 0px;
         border: 2px solid var(--color-darker-gray);
         text-align: center;
+        display: none;
+
+        @media (min-width: 768px) {
+          display: block;
+        }
       }
     }
 
@@ -55,11 +66,14 @@ main {
       overflow-x: scroll;
       
       @media (min-width: 768px) {
-        display: grid;
-        gap: 1rem;
         grid-auto-flow: row;
-        margin-top: 20px;
+        grid-auto-columns: auto;
+        grid-template-columns: auto auto;
         overflow: auto;
+
+        &.layered {
+          grid-template-columns: auto;
+        }
       }
     }
   }
