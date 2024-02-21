@@ -1,49 +1,50 @@
 <template>
   <li class="card card__background" :class="layoutHandler">
+
+    <!-- General card container -->
     <div class="card__container">
+
       <span class="card__icon">
-        <button class="icon-button" aria-label="thumbs up">
+        <button v-if="getCelebrityStatusById(props.celebrity.id).value === 'positive'" class="icon-button card-thumb-button" aria-label="thumbs up">
           <img src="/assets/img/thumbs-up.svg" alt="thumbs up" />
+        </button>
+        <button v-else-if="getCelebrityStatusById(props.celebrity.id).value == 'negative'" class="icon-button card-thumb-button" aria-label="thumbs down">
+          <img src="/assets/img/thumbs-down.svg" alt="thumbs down" />
         </button>
       </span>
 
+      <!-- Central card container -->
       <div class="card__content">
+
+        <!-- Main info -->
         <div class="card__content-top">
           <span class="card__title">{{ props.celebrity.name }}</span>
           <p class="card__description truncate-overflow">{{ props.celebrity.description }}</p>
         </div>
+
+        <!-- Actions -->
         <div class="card__content-bottom">
-          <span class="card__last-updated">{{ props.celebrity.lastUpdated }}</span>
-          <div class="card__thumbs-container">
-            <button class="icon-button" aria-label="thumbs up">
-              <img src="/assets/img/thumbs-up.svg" alt="thumbs up" />
-            </button>
-            <button class="icon-button" aria-label="thumbs down">
-              <img src="/assets/img/thumbs-down.svg" alt="thumbs down" />
-            </button>
-            <button class="cta">Vote now</button>
-          </div>
+          <!-- Vote action container -->
+          <ThumbButtonsComponent :last-updated="props.celebrity.lastUpdated" :category="props.celebrity.category"
+            :id="props.celebrity.id" />
         </div>
       </div>
       <div class="card__gap"></div>
     </div>
 
-    <div class="card__thumbs-percentage">
-      <div class="icon-values">
-        <span><img src="/assets/img/thumbs-up.svg" alt="thumbs down" />{{ positiveVotesCalc }}</span>
-        <span>{{ negativeVotesCalc }}<img src="/assets/img/thumbs-down.svg" alt="thumbs down" /></span>
-      </div>
-      <div class="icon-background">
-        <span class="icon-percentage" aria-label="thumbs up" :style="{ width: positiveVotesCalc  }"></span>
-        <span class="icon-percentage" aria-label="thumbs down" :style="{ width: negativeVotesCalc }"></span>
-      </div>
-    </div>
+    <!-- Thumbs gauge percentage -->
+    <ThumbGaugeComponent :votes="props.celebrity.votes" />
   </li>
 </template>
 
 <script setup lang="ts">
-import type { ICelebrity } from '@/interfaces/Celebrities';
 import { computed } from 'vue';
+import type { ICelebrity } from '@/interfaces/celebrities';
+import ThumbGaugeComponent from '@/components/thumb-gauge/ThumbGaugeComponent.vue';
+import ThumbButtonsComponent from '@/components/thumb-buttons/ThumbButtonsComponent.vue';
+import { useCelebritiesStore, type VoteTypes } from '@/stores/celebrities';
+
+const { getCelebrityStatusById } = useCelebritiesStore();
 
 interface Props {
   celebrity: ICelebrity;
@@ -57,9 +58,6 @@ const props = withDefaults(defineProps<Props>(), {
 const layoutHandler = computed(() => ({
   'layered': props.isLayered,
 }));
-
-const positiveVotesCalc = computed(() => `${ props.celebrity.votes.positive }%`);
-const negativeVotesCalc = computed(() => `${ props.celebrity.votes.negative }%`);
 </script>
 
 <style scoped lang="scss">
@@ -71,10 +69,15 @@ const negativeVotesCalc = computed(() => `${ props.celebrity.votes.negative }%`)
   max-width: 300px;
   justify-content: flex-end;
   position: relative;
-  row-gap: 1rem;
+  row-gap: 16px;
 
-  @media (min-width: 768px) {
+  @media all and (min-width: 767px) {
     max-width: 100%;
+    row-gap: 0.5rem;
+  }
+
+  @media all and (min-width: 1100px) {
+    row-gap: 1.5rem;
   }
 
   &.card__background {
@@ -84,7 +87,7 @@ const negativeVotesCalc = computed(() => `${ props.celebrity.votes.negative }%`)
   }
 
   &__container {
-    column-gap: 0.5rem;
+    column-gap: 8px;
     display: flex;
     justify-content: space-between;
     z-index: 1;
@@ -92,7 +95,7 @@ const negativeVotesCalc = computed(() => `${ props.celebrity.votes.negative }%`)
 
   &__icon {
     flex-grow: 0;
-    height: 30px;
+    height: 1.875rem;
     pointer-events: none;
   }
 
@@ -106,73 +109,18 @@ const negativeVotesCalc = computed(() => `${ props.celebrity.votes.negative }%`)
     flex-basis: 80%;
     flex-direction: column;
     flex-grow: 1;
-    row-gap: 1.3rem;
+    row-gap: 20.8px;
 
     &-top {
       display: flex;
       flex-direction: column;
-      row-gap: 1.3rem;
+      row-gap: 20.8px;
     }
 
     &-bottom {
       display: flex;
       flex-direction: column;
-      row-gap: 1.3rem;
-    }
-  }
-
-  &__thumbs-percentage {
-    height: 2.25rem;
-    position: relative;
-
-    .icon-values {
-      align-items: center;
-      display: flex;
-      font-size: 1.125rem;
-      gap: 1rem;
-      height: 100%;
-      justify-content: space-between;
-      padding: 0.3rem 0.6rem;
-      position: relative;
-      z-index: 2;
-
-      span {
-        align-content: end;
-        display: flex;
-        gap: 0.5rem;
-        height: 100%;
-        z-index: 2;
-      }
-
-      img {
-        width: 15px;
-      }
-    }
-
-    .icon-background {
-      bottom: 0;
-      display: flex;
-      height: 2.25rem;
-      justify-content: space-between;
-      left: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 100%;
-      z-index: 1;
-
-      .icon-percentage {
-        &[aria-label='thumbs up'] {
-          background-color: rgba(var(--color-green-positive), 0.6);
-          justify-content: flex-start;
-        }
-
-        &[aria-label='thumbs down'] {
-          background-color: rgba(var(--color-yellow-negative), 0.6);
-          justify-content: flex-end;
-        }
-      }
-
+      row-gap: 20.8px;
     }
   }
 
@@ -180,9 +128,9 @@ const negativeVotesCalc = computed(() => `${ props.celebrity.votes.negative }%`)
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     display: -webkit-box;
-    font-size: 1.875rem;
+    font-size: 30px;
     font-weight: 400;
-    line-height: 2.25rem;
+    line-height: 36px;
     overflow: hidden;
   }
 
@@ -190,54 +138,12 @@ const negativeVotesCalc = computed(() => `${ props.celebrity.votes.negative }%`)
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     display: -webkit-box;
-    font-size: .9375rem;
+    font-size: 15px;
     font-weight: 400;
-    line-height: 1.125rem;
+    line-height: 18px;
     margin: 0;
     overflow: hidden;
     padding: 0;
-  }
-
-  &__last-updated {
-    font-weight: 700;
-    line-height: .9rem;
-    text-align: right;
-  }
-
-  &__thumbs-container {
-    align-items: center;
-    column-gap: 0.5rem;
-    display: flex;
-    height: 30px;
-    justify-content: flex-end;
-
-    .cta {
-      background: var(--color-darker-background);
-      border: 2px solid #FFF;
-      color: #FFF;
-      font-size: 1rem;
-      font-weight: 400;
-      height: 38px;
-      width: 107px;
-    }
-  }
-
-  .icon-button {
-    height: 100%;
-    width: 30px;
-    transition: all 0.2s ease-in;
-    border: 2px solid transparent;
-    cursor: pointer;
-
-    img {
-      height: 1rem;
-      max-width: 1rem;
-      object-fit: cover;
-    }
-
-    &:hover {
-      border: 2px solid #FFF;
-    }
   }
 
   &.layered {
@@ -255,8 +161,8 @@ const negativeVotesCalc = computed(() => `${ props.celebrity.votes.negative }%`)
       &::after {
         position: absolute;
         content: '';
-        background: rgb(110,110,110);
-        background: linear-gradient(90deg, rgba(110,110,110,0) 10%, rgba(147,147,147,1) 20%, rgba(111,111,111,1) 50%, rgba(147,147,147,1) 80%);
+        background: rgb(110, 110, 110);
+        background: linear-gradient(90deg, rgba(110, 110, 110, 0) 10%, rgba(147, 147, 147, 1) 20%, rgba(111, 111, 111, 1) 50%, rgba(147, 147, 147, 1) 80%);
         top: 0;
         left: 0;
         right: 0;
@@ -272,9 +178,9 @@ const negativeVotesCalc = computed(() => `${ props.celebrity.votes.negative }%`)
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 1;
       display: -webkit-box;
-      font-size: 1.875rem;
+      font-size: 30px;
       font-weight: 400;
-      line-height: 2.25rem;
+      line-height: 36px;
       overflow: hidden;
     }
 
@@ -282,13 +188,14 @@ const negativeVotesCalc = computed(() => `${ props.celebrity.votes.negative }%`)
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      column-gap: 1.2rem;
+      column-gap: 19.2px;
       justify-content: space-around;
-      
+
       &-top {
         flex-basis: 60%;
       }
     }
   }
 
-}</style>
+}
+</style>
