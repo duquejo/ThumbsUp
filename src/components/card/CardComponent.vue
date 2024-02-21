@@ -1,23 +1,28 @@
 <template>
-  <li class="card" :class="layoutHandler">
+  <li class="card card__background" :class="layoutHandler">
     <div class="card__container">
       <span class="card__icon">
         <button class="icon-button" aria-label="thumbs up">
           <img src="/assets/img/thumbs-up.svg" alt="thumbs up" />
         </button>
       </span>
+
       <div class="card__content">
-        <span class="card__title">{{ props.celebrity.name }}</span>
-        <p class="card__description truncate-overflow">{{ props.celebrity.description }}</p>
-        <span class="card__last-updated">{{ props.celebrity.lastUpdated }}</span>
-        <div class="card__thumbs-container">
-          <button class="icon-button" aria-label="thumbs up">
-            <img src="/assets/img/thumbs-up.svg" alt="thumbs up" />
-          </button>
-          <button class="icon-button" aria-label="thumbs down">
-            <img src="/assets/img/thumbs-down.svg" alt="thumbs down" />
-          </button>
-          <button class="cta">Vote now</button>
+        <div class="card__content-top">
+          <span class="card__title">{{ props.celebrity.name }}</span>
+          <p class="card__description truncate-overflow">{{ props.celebrity.description }}</p>
+        </div>
+        <div class="card__content-bottom">
+          <span class="card__last-updated">{{ props.celebrity.lastUpdated }}</span>
+          <div class="card__thumbs-container">
+            <button class="icon-button" aria-label="thumbs up">
+              <img src="/assets/img/thumbs-up.svg" alt="thumbs up" />
+            </button>
+            <button class="icon-button" aria-label="thumbs down">
+              <img src="/assets/img/thumbs-down.svg" alt="thumbs down" />
+            </button>
+            <button class="cta">Vote now</button>
+          </div>
         </div>
       </div>
       <div class="card__gap"></div>
@@ -25,16 +30,14 @@
 
     <div class="card__thumbs-percentage">
       <div class="icon-values">
-        <span><img src="/assets/img/thumbs-up.svg" alt="thumbs down" />25.5%</span>
-        <span>74.5%<img src="/assets/img/thumbs-down.svg" alt="thumbs down" /></span>
+        <span><img src="/assets/img/thumbs-up.svg" alt="thumbs down" />{{ positiveVotesCalc }}</span>
+        <span>{{ negativeVotesCalc }}<img src="/assets/img/thumbs-down.svg" alt="thumbs down" /></span>
       </div>
       <div class="icon-background">
-        <span class="icon-percentage" aria-label="thumbs up" :style="{ width: '25.5%' }"></span>
-        <span class="icon-percentage" aria-label="thumbs down" :style="{ width: '74.5%' }"></span>
+        <span class="icon-percentage" aria-label="thumbs up" :style="{ width: positiveVotesCalc  }"></span>
+        <span class="icon-percentage" aria-label="thumbs down" :style="{ width: negativeVotesCalc }"></span>
       </div>
     </div>
-
-    <img class="card__background" src="/assets/img/pope-francis.png" alt="Pope Francis" />
   </li>
 </template>
 
@@ -48,53 +51,36 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  isLayered: true,
+  isLayered: false,
 });
 
 const layoutHandler = computed(() => ({
   'layered': props.isLayered,
 }));
+
+const positiveVotesCalc = computed(() => `${ props.celebrity.votes.positive }%`);
+const negativeVotesCalc = computed(() => `${ props.celebrity.votes.negative }%`);
 </script>
 
 <style scoped lang="scss">
 .card {
-  background-color: #000;
   color: #FFF;
   display: flex;
   flex-direction: column;
   height: 300px;
-  justify-content: flex-end;
   max-width: 300px;
+  justify-content: flex-end;
   position: relative;
   row-gap: 1rem;
 
-  &.layered {
+  @media (min-width: 768px) {
     max-width: 100%;
-
-    &__container {
-      
-    }
   }
 
-  &__background {
-    height: 100%;
-    left: 0;
-    object-fit: cover;
-    opacity: 0.6;
-    pointer-events: none;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 0;
-  }
-
-  &__icon {
-    flex-grow: 0;
-    height: 30px;
-  }
-
-  &__gap {
-    flex-grow: 1;
+  &.card__background {
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), no-repeat url('../assets/img/pope-francis.png');
+    background-size: cover;
+    position: relative;
   }
 
   &__container {
@@ -104,12 +90,35 @@ const layoutHandler = computed(() => ({
     z-index: 1;
   }
 
+  &__icon {
+    flex-grow: 0;
+    height: 30px;
+    pointer-events: none;
+  }
+
+  &__gap {
+    flex-grow: 1;
+  }
+
+
   &__content {
     display: flex;
     flex-basis: 80%;
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-grow: 1;
     row-gap: 1.3rem;
+
+    &-top {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1.3rem;
+    }
+
+    &-bottom {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1.3rem;
+    }
   }
 
   &__thumbs-percentage {
@@ -127,13 +136,14 @@ const layoutHandler = computed(() => ({
       position: relative;
       z-index: 2;
 
-      span{
+      span {
         align-content: end;
         display: flex;
         gap: 0.5rem;
         height: 100%;
         z-index: 2;
       }
+
       img {
         width: 15px;
       }
@@ -146,7 +156,7 @@ const layoutHandler = computed(() => ({
       justify-content: space-between;
       left: 0;
       position: absolute;
-      right: 0;     
+      right: 0;
       top: 0;
       width: 100%;
       z-index: 1;
@@ -156,13 +166,13 @@ const layoutHandler = computed(() => ({
           background-color: rgba(var(--color-green-positive), 0.6);
           justify-content: flex-start;
         }
-        
+
         &[aria-label='thumbs down'] {
           background-color: rgba(var(--color-yellow-negative), 0.6);
           justify-content: flex-end;
         }
       }
-    
+
     }
   }
 
@@ -215,14 +225,70 @@ const layoutHandler = computed(() => ({
   .icon-button {
     height: 100%;
     width: 30px;
+    transition: all 0.2s ease-in;
+    border: 2px solid transparent;
+    cursor: pointer;
+
     img {
       height: 1rem;
       max-width: 1rem;
       object-fit: cover;
     }
+
     &:hover {
       border: 2px solid #FFF;
     }
   }
-}
-</style>
+
+  &.layered {
+    max-width: 100%;
+    height: 138px;
+
+    @media all and (min-width: 1100px) {
+      height: 170px;
+    }
+
+    &.card__background {
+      background-size: contain;
+      background-color: gray;
+
+      &::after {
+        position: absolute;
+        content: '';
+        background: rgb(110,110,110);
+        background: linear-gradient(90deg, rgba(110,110,110,0) 10%, rgba(147,147,147,1) 20%, rgba(111,111,111,1) 50%, rgba(147,147,147,1) 80%);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    }
+
+    .card__gap {
+      display: none;
+    }
+
+    .card__title {
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      display: -webkit-box;
+      font-size: 1.875rem;
+      font-weight: 400;
+      line-height: 2.25rem;
+      overflow: hidden;
+    }
+
+    .card__content {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      column-gap: 1.2rem;
+      justify-content: space-around;
+      
+      &-top {
+        flex-basis: 60%;
+      }
+    }
+  }
+
+}</style>
