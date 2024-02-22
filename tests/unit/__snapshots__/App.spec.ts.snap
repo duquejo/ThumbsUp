@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`+ AppVue unit test > should render properly 1`] = `
+"<navigation-component-stub></navigation-component-stub>
+<hero-component-stub></hero-component-stub>
+<general-layout-stub></general-layout-stub>"
+`;

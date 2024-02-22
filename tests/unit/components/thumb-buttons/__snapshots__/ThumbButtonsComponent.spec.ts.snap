@@ -1,0 +1,34 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`+ ThumbButtonsComponent unit tests > should handle the buttons 'done' state 1`] = `
+"<!-- Eyebrow data -->
+<span data-v-f6c00734="" class="eyebrow">Thank you for voting!</span>
+<div data-v-f6c00734="" class="card__thumbs-container">
+  <!--v-if-->
+  <!--v-if--><button data-v-f6c00734="" type="submit" title="Click to vote">Vote again</button>
+</div>"
+`;
+
+exports[`+ ThumbButtonsComponent unit tests > should handle the buttons 'idle' state 1`] = `
+"<!-- Eyebrow data -->
+<eyebrow-component-stub data-v-f6c00734="" lastupdated="2020-03-10T23:08:57.892Z" category="entertainment"></eyebrow-component-stub>
+<div data-v-f6c00734="" class="card__thumbs-container"><button data-v-f6c00734="" class="icon-button card-thumb-button" aria-label="thumbs up"><img data-v-f6c00734="" src="/assets/img/thumbs-up.svg" alt="thumbs up"></button><button data-v-f6c00734="" class="icon-button card-thumb-button" aria-label="thumbs down"><img data-v-f6c00734="" src="/assets/img/thumbs-down.svg" alt="thumbs down"></button><button data-v-f6c00734="" type="submit" disabled="" title="You must thumb up/down first">Vote now</button></div>"
+`;
+
+exports[`+ ThumbButtonsComponent unit tests > should handle the buttons 'ready' state - Negative 1`] = `
+"<!-- Eyebrow data -->
+<eyebrow-component-stub data-v-f6c00734="" lastupdated="2020-03-10T23:08:57.892Z" category="entertainment"></eyebrow-component-stub>
+<div data-v-f6c00734="" class="card__thumbs-container"><button data-v-f6c00734="" class="icon-button card-thumb-button" aria-label="thumbs up"><img data-v-f6c00734="" src="/assets/img/thumbs-up.svg" alt="thumbs up"></button><button data-v-f6c00734="" class="icon-button card-thumb-button selected" aria-label="thumbs down"><img data-v-f6c00734="" src="/assets/img/thumbs-down.svg" alt="thumbs down"></button><button data-v-f6c00734="" type="submit" title="Click to vote">Vote now</button></div>"
+`;
+
+exports[`+ ThumbButtonsComponent unit tests > should handle the buttons 'ready' state - Positive 1`] = `
+"<!-- Eyebrow data -->
+<eyebrow-component-stub data-v-f6c00734="" lastupdated="2020-03-10T23:08:57.892Z" category="entertainment"></eyebrow-component-stub>
+<div data-v-f6c00734="" class="card__thumbs-container"><button data-v-f6c00734="" class="icon-button card-thumb-button selected" aria-label="thumbs up"><img data-v-f6c00734="" src="/assets/img/thumbs-up.svg" alt="thumbs up"></button><button data-v-f6c00734="" class="icon-button card-thumb-button" aria-label="thumbs down"><img data-v-f6c00734="" src="/assets/img/thumbs-down.svg" alt="thumbs down"></button><button data-v-f6c00734="" type="submit" title="Click to vote">Vote now</button></div>"
+`;
+
+exports[`+ ThumbButtonsComponent unit tests > should render properly 1`] = `
+"<!-- Eyebrow data -->
+<eyebrow-component-stub data-v-f6c00734="" lastupdated="2020-03-10T23:08:57.892Z" category="entertainment"></eyebrow-component-stub>
+<div data-v-f6c00734="" class="card__thumbs-container"><button data-v-f6c00734="" class="icon-button card-thumb-button" aria-label="thumbs up"><img data-v-f6c00734="" src="/assets/img/thumbs-up.svg" alt="thumbs up"></button><button data-v-f6c00734="" class="icon-button card-thumb-button" aria-label="thumbs down"><img data-v-f6c00734="" src="/assets/img/thumbs-down.svg" alt="thumbs down"></button><button data-v-f6c00734="" type="submit" disabled="" title="You must thumb up/down first">Vote now</button></div>"
+`;

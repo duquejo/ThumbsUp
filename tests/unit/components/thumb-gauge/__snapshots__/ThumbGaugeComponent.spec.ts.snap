@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`+ ThumbGaugeComponent unit tests > should render properly 1`] = `
+"<div data-v-a282580d="" class="card__thumbs-percentage">
+  <div data-v-a282580d="" class="icon-values"><span data-v-a282580d=""><img data-v-a282580d="" src="/assets/img/thumbs-up.svg" alt="thumbs down">0%</span><span data-v-a282580d="">0%<img data-v-a282580d="" src="/assets/img/thumbs-down.svg" alt="thumbs down"></span></div>
+  <div data-v-a282580d="" class="icon-background"><span data-v-a282580d="" class="icon-percentage" aria-label="thumbs up" style="width: 0%;"></span><span data-v-a282580d="" class="icon-percentage" aria-label="thumbs down" style="width: 0%;"></span></div>
+</div>"
+`;
+
+exports[`+ ThumbGaugeComponent unit tests > should render with the given props 1`] = `
+"<div data-v-a282580d="" class="card__thumbs-percentage">
+  <div data-v-a282580d="" class="icon-values"><span data-v-a282580d=""><img data-v-a282580d="" src="/assets/img/thumbs-up.svg" alt="thumbs down">69%</span><span data-v-a282580d="">31%<img data-v-a282580d="" src="/assets/img/thumbs-down.svg" alt="thumbs down"></span></div>
+  <div data-v-a282580d="" class="icon-background"><span data-v-a282580d="" class="icon-percentage" aria-label="thumbs up" style="width: 69%;"></span><span data-v-a282580d="" class="icon-percentage" aria-label="thumbs down" style="width: 31%;"></span></div>
+</div>"
+`;

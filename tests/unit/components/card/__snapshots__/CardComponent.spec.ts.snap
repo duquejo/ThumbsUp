@@ -1,0 +1,41 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`+ CardComponent unit tests > should render properly 1`] = `
+"<li data-v-d766fe8c="" class="card card__background" style="background-size: cover;">
+  <!-- General card container -->
+  <div data-v-d766fe8c="" class="card__container"><span data-v-d766fe8c="" class="card__icon"><!--v-if--></span><!-- Central card container -->
+    <div data-v-d766fe8c="" class="card__content">
+      <!-- Main info -->
+      <div data-v-d766fe8c="" class="card__content-top"><span data-v-d766fe8c="" class="card__title">Pope Francis</span>
+        <p data-v-d766fe8c="" class="card__description truncate-overflow">He’s talking tough on clergy sexual abuse, or is he just another pervert protector? or a true pedophile punishing pontiff?</p>
+      </div><!-- Actions -->
+      <div data-v-d766fe8c="" class="card__content-bottom">
+        <!-- Vote action container -->
+        <thumb-buttons-component-stub data-v-d766fe8c="" lastupdated="2020-03-10T23:08:57.892Z" category="religion" id="0"></thumb-buttons-component-stub>
+      </div>
+    </div>
+    <div data-v-d766fe8c="" class="card__gap"></div>
+  </div><!-- Thumbs gauge percentage -->
+  <thumb-gauge-component-stub data-v-d766fe8c="" votes="[object Object]"></thumb-gauge-component-stub>
+</li>"
+`;
+
+exports[`+ CardComponent unit tests > should set by default grid mode - Layered class added 1`] = `
+"<li data-v-d766fe8c="" class="card card__background layered" style="background-size: cover;">
+  <!-- General card container -->
+  <div data-v-d766fe8c="" class="card__container"><span data-v-d766fe8c="" class="card__icon"><!--v-if--></span><!-- Central card container -->
+    <div data-v-d766fe8c="" class="card__content">
+      <!-- Main info -->
+      <div data-v-d766fe8c="" class="card__content-top"><span data-v-d766fe8c="" class="card__title">Pope Francis</span>
+        <p data-v-d766fe8c="" class="card__description truncate-overflow">He’s talking tough on clergy sexual abuse, or is he just another pervert protector? or a true pedophile punishing pontiff?</p>
+      </div><!-- Actions -->
+      <div data-v-d766fe8c="" class="card__content-bottom">
+        <!-- Vote action container -->
+        <thumb-buttons-component-stub data-v-d766fe8c="" lastupdated="2020-03-10T23:08:57.892Z" category="religion" id="0"></thumb-buttons-component-stub>
+      </div>
+    </div>
+    <div data-v-d766fe8c="" class="card__gap"></div>
+  </div><!-- Thumbs gauge percentage -->
+  <thumb-gauge-component-stub data-v-d766fe8c="" votes="[object Object]"></thumb-gauge-component-stub>
+</li>"
+`;
