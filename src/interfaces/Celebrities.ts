@@ -1,11 +1,11 @@
 export interface ICelebrity {
-  id:          number;
-  name:        string;
+  id: number;
+  name: string;
   description: string;
-  category:    string;
-  picture:     string;
+  category: string;
+  picture: string;
   lastUpdated: string;
-  votes:       IVotes;
+  votes: IVotes;
 }
 
 export interface IVotes {

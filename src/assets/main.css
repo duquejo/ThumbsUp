@@ -118,7 +118,7 @@ hr[role='separator'] {
 .nav__search {
   width: 24px;
   height: 24px;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 
 .nav__search-input {
@@ -153,6 +153,7 @@ hr[role='separator'] {
   width: 160vw;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .hero__featured-card {
@@ -179,9 +180,6 @@ hr[role='separator'] {
   left: -20%;
   width: 140%;
   height: 140%;
-  background:
-    center no-repeat linear-gradient(var(--color-dark-background), var(--color-dark-background)),
-    -25vw 0/160vw no-repeat url('../assets/img/pope-francis.png');
   filter: blur(1rem);
 }
 
@@ -241,7 +239,7 @@ hr[role='separator'] {
   width: 30%;
   align-items: center;
   justify-content: flex-end;
-  padding: 0 .25rem 0 0;
+  padding: 0 0.25rem 0 0;
   background-color: var(--color-dark-background);
   color: var(--color-white);
   font-weight: 300;
@@ -254,9 +252,9 @@ hr[role='separator'] {
   display: block;
   width: 0;
   height: 0;
-  border-top: .25rem solid transparent;
-  border-bottom: .25rem solid transparent;
-  border-left: .5rem solid var(--color-dark-background);
+  border-top: 0.25rem solid transparent;
+  border-bottom: 0.25rem solid transparent;
+  border-left: 0.5rem solid var(--color-dark-background);
   content: ' ';
 }
 
@@ -264,7 +262,7 @@ hr[role='separator'] {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 0 0 0 .75rem;
+  padding: 0 0 0 0.75rem;
 }
 
 .closing-gauge__number {
@@ -387,7 +385,7 @@ main h2 {
 }
 
 .footer__links li {
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   font-size: 1.25rem;
 }
 
@@ -423,7 +421,7 @@ main h2 {
 .featured-card__more-info-icon {
   width: 1.5rem;
   height: 1rem;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .banner-top .icon-button {
@@ -447,14 +445,14 @@ main h2 {
   max-width: 1rem;
   object-fit: cover;
 }
-.card-thumb-button:hover, 
+.card-thumb-button:hover,
 .card-thumb-button.selected {
-  border: 2px solid #FFF;
+  border: 2px solid #fff;
 }
 
 .eyebrow {
   font-weight: 700;
-  line-height: .9rem;
+  line-height: 0.9rem;
   font-size: 12px;
   text-align: right;
 }
@@ -563,7 +561,7 @@ main h2 {
   .footer__social span {
     margin-right: 1rem;
     color: var(--color-dark-gray);
-    font-size: .833rem;
+    font-size: 0.833rem;
   }
 
   .footer__social > ul {
@@ -681,7 +679,7 @@ main h2 {
   .featured-card__cta {
     margin: 1rem 0 2rem;
     font-size: 1.5rem;
-}
+  }
 
   .featured-card__buttons {
     margin: 0 -1.5rem -2rem;
@@ -715,8 +713,8 @@ main h2 {
   }
 
   .closing-gauge__left:after {
-    border-top-width: .33rem;
-    border-bottom-width: .33rem;
+    border-top-width: 0.33rem;
+    border-bottom-width: 0.33rem;
   }
 
   .banner-top .banner__text,

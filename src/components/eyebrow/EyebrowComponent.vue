@@ -1,4 +1,3 @@
-import { computed } from 'vue';
 <template>
   <span class="eyebrow">
     <time>{{ readableDate }}</time> in <span>{{ props.category }}</span>
