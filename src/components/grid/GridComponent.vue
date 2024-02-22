@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import type { ICelebrity } from '@/interfaces/celebrities';
+import type { ICelebrity } from '@/interfaces/Celebrities';
 import CardComponent from '@/components/card/CardComponent.vue';
 import { useCelebritiesStore } from '@/stores/celebrities';
 import SelectComponent from '@/components/select/SelectComponent.vue';

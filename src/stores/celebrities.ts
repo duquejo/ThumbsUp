@@ -1,7 +1,7 @@
 import { computed, reactive, type ComputedRef } from 'vue';
 import { defineStore } from 'pinia';
 import { data } from '@/data.json';
-import type { ICelebrity } from '@/interfaces/celebrities';
+import type { ICelebrity } from '@/interfaces/Celebrities';
 
 export type VoteTypes = 'positive' | 'negative';
 

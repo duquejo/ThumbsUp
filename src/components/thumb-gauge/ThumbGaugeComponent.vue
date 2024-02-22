@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { IVotes } from '@/interfaces/celebrities';
+import type { IVotes } from '@/interfaces/Celebrities';
 
 interface Props {
   votes?: IVotes;
