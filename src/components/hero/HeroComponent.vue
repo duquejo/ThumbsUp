@@ -47,7 +47,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useCelebritiesStore } from '@/stores/celebrities';
-import type { ICelebrity } from '@/interfaces/celebrities';
+import type { ICelebrity } from '@/interfaces/Celebrities';
 
 const { getRandomCelebrity } = useCelebritiesStore();
 

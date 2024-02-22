@@ -47,7 +47,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { ICelebrity } from '@/interfaces/celebrities';
+import type { ICelebrity } from '@/interfaces/Celebrities';
 import ThumbGaugeComponent from '@/components/thumb-gauge/ThumbGaugeComponent.vue';
 import ThumbButtonsComponent from '@/components/thumb-buttons/ThumbButtonsComponent.vue';
 import { useCelebritiesStore } from '@/stores/celebrities';
