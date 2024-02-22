@@ -1,15 +1,18 @@
-
 <template>
   <div class="layout-select" :tabindex="props.tabIndex" @blur="open = false">
     <div class="layout-select__selected" @click="open = !open">
       {{ selected }}
     </div>
     <div class="layout-select__items" :class="{ selectHide: !open }">
-      <div v-for="(option, i) of options" :key="i" @click="
-        selected = option;
-      open = false;
-      emit('input', option);
-      ">
+      <div
+        v-for="(option, i) of options"
+        :key="i"
+        @click="
+          selected = option;
+          open = false;
+          emit('input', option);
+        "
+      >
         {{ option }}
       </div>
     </div>
@@ -75,7 +78,7 @@ const selected = ref<string | null>(props.default ? props.default : null);
 
     &::after {
       position: absolute;
-      content: "";
+      content: '';
       top: 50%;
       transform: translateY(-50%);
       right: 1em;
@@ -109,7 +112,7 @@ const selected = ref<string | null>(props.default ? props.default : null);
       &:last-child {
         border-bottom: 2px solid var(--color-darker-gray);
       }
-      
+
       &:first-child {
         border-top: 2px solid var(--color-darker-gray);
       }

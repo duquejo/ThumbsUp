@@ -3,7 +3,7 @@
     <div class="main__header">
       <span class="main__header-title">Previous Rulings</span>
       <div class="main__header-select">
-        <SelectComponent :options="[ 'list', 'grid' ]" :default="selected" @input="onChangeSelect" />
+        <SelectComponent :options="['list', 'grid']" :default="selected" @input="onChangeSelect" />
       </div>
     </div>
     <ol class="main__container" :class="layeredClasses">
@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import type { ICelebrity } from '../../interfaces/celebrities';
+import type { ICelebrity } from '@/interfaces/celebrities';
 import CardComponent from '@/components/card/CardComponent.vue';
 import { useCelebritiesStore } from '@/stores/celebrities';
 import SelectComponent from '@/components/select/SelectComponent.vue';
@@ -25,12 +25,12 @@ const celebs = ref<ICelebrity[]>(celebrities);
 const selected = ref<string>('grid');
 
 const layeredClasses = computed(() => ({
-  'layered': selected.value === 'list' ?  true : false,
+  layered: selected.value === 'list' ? true : false,
 }));
 
 const onChangeSelect = (option: string) => {
   selected.value = option;
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -63,7 +63,7 @@ main {
       grid-auto-flow: column;
       margin-top: 20px;
       overflow-x: scroll;
-      
+
       @media (min-width: 768px) {
         grid-auto-flow: row;
         grid-auto-columns: auto;
