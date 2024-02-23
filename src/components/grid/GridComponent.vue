@@ -86,4 +86,3 @@ main {
   }
 }
 </style>
-@/stores/useCelebritiesStore
