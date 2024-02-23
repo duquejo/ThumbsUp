@@ -4,12 +4,12 @@
   "private": true,
   "engineStrict": true,
   "engines": {
-    "node": "18.16.0"
+    "node": "18.X"
   },
   "type": "module",
   "scripts": {
     "requirements-check": "node check_node_version.cjs",
-    "dev": "vite",
+    "dev": "yarn run requirements-check && vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "test:ci": "vitest run",
