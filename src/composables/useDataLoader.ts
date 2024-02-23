@@ -4,9 +4,7 @@ import { useCelebritiesStore } from '@/stores/celebrities';
 import type { ICelebrity } from '@/interfaces/Celebrities';
 import { getCelebrities } from '@/api/celebritiesApi';
 
-
 const useDataLoader = () => {
-
   const { getItem } = useLocalStorage('celebrities');
   const store = useCelebritiesStore();
 
@@ -25,8 +23,8 @@ const useDataLoader = () => {
         store.setCelebritiesState(cacheData);
       }
       isDataLoaded.value = true;
-    }
+    },
   };
-}
+};
 
 export default useDataLoader;

@@ -1,7 +1,6 @@
 const useLocalStorage = (key: string) => {
   return {
     saveItem: (data: any) => {
-
       const expire = 60;
       const now = Date.now();
       const schedule = now + expire * 1000;
@@ -13,16 +12,15 @@ const useLocalStorage = (key: string) => {
     },
 
     getItem: <T>(): T[] => {
-
       let result: T[] = [];
 
       const now = Date.now();
       let expiresIn = Number(localStorage.getItem(`${key}_expires_in`));
-      if( ! expiresIn ) {
+      if (!expiresIn) {
         expiresIn = 0;
       }
 
-      if(expiresIn < now) {
+      if (expiresIn < now) {
         console.log('Loading fresh data 🍃');
         localStorage.removeItem(key);
         localStorage.removeItem(`${key}_expires_in`);
@@ -31,11 +29,11 @@ const useLocalStorage = (key: string) => {
 
       console.log('Loading data from cache 🤖');
       const data = localStorage.getItem(key);
-      if( data ) {
+      if (data) {
         result = JSON.parse(data);
       }
       return result;
-    } 
+    },
   };
 };
 
