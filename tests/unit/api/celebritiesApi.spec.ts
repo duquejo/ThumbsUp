@@ -24,6 +24,9 @@ vi.mock('axios', async(importActual) => {
 
 describe('+ getCelebrities', () => {
 
+  const celebritiesURL = import.meta.env.VITE_CELEBRITIES_URL;
+  const votesURL = import.meta.env.VITE_VOTES_URL;
+
   const expectedMessage = {
     id: 0,
     name: 'John Doe'
@@ -40,7 +43,7 @@ describe('+ getCelebrities', () => {
 
     expect(result).toBe(expectedMessage);
     expect(mocks.get).toHaveBeenCalled();
-    expect(mocks.get).toHaveBeenCalledWith('');
+    expect(mocks.get).toHaveBeenCalledWith(celebritiesURL);
   });
 
   it('should post a valid vote to the API', async () => {
@@ -51,7 +54,7 @@ describe('+ getCelebrities', () => {
 
     expect(result).toBe(expectedMessage);
     expect(mocks.post).toHaveBeenCalled();
-    expect(mocks.post).toHaveBeenCalledWith('', { id: String(params.id), vote: params.vote});
+    expect(mocks.post).toHaveBeenCalledWith(votesURL, { id: String(params.id), vote: params.vote});
   });
 
   it('should catch any error from the getCelebrities API', async () => {
@@ -73,7 +76,7 @@ describe('+ getCelebrities', () => {
     }
     
     expect(mocks.get).toHaveBeenCalled();
-    expect(mocks.get).toHaveBeenCalledWith('');
+    expect(mocks.get).toHaveBeenCalledWith(votesURL);
   });
 
   it('should catch any error from the postCelebrityVote API', async () => {
@@ -96,6 +99,6 @@ describe('+ getCelebrities', () => {
     }
     
     expect(mocks.post).toHaveBeenCalled();
-    expect(mocks.post).toHaveBeenCalledWith('', { id: String(params.id), vote: params.vote});
+    expect(mocks.post).toHaveBeenCalledWith(votesURL, { id: String(params.id), vote: params.vote});
   });
 });
