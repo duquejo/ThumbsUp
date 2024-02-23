@@ -107,4 +107,4 @@ const dynamicSubmitText = computed(() => {
     }
   }
 }
-</style>F
+</style>
