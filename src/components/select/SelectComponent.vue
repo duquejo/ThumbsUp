@@ -4,15 +4,7 @@
       {{ selected }}
     </div>
     <div class="layout-select__items" :class="{ selectHide: !open }">
-      <div
-        v-for="(option, i) of options"
-        :key="i"
-        @click="
-          selected = option;
-          open = false;
-          emit('input', option);
-        "
-      >
+      <div v-for="(option, i) of options" :key="i" role="option" @click="() => onSelectChangeClick(option)">
         {{ option }}
       </div>
     </div>
@@ -20,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
 
 interface Props {
   options: string[];
@@ -40,7 +32,15 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<Emits>();
 
 const open = ref<boolean>(false);
-const selected = ref<string | null>(props.default ? props.default : null);
+const selected = ref<string|null>(props.default);
+
+watchEffect(() => selected.value = props.default);
+
+const onSelectChangeClick = (option: string) => {
+  selected.value = option;
+  open.value = false;
+  emit('input', option);
+}
 </script>
 
 <style scoped lang="scss">

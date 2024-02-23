@@ -3,7 +3,7 @@
     <div class="main__header">
       <span class="main__header-title">Previous Rulings</span>
       <div class="main__header-select">
-        <SelectComponent :options="['list', 'grid']" :default="selected" @input="onChangeSelect" />
+        <SelectComponent :options="['list', 'grid']" :default="selectedOption" @input="onChangeSelect" />
       </div>
     </div>
     <ol class="main__container" :class="layeredClasses" v-if="celebrities.length > 0">
@@ -11,7 +11,7 @@
         v-for="celeb in celebrities"
         :key="celeb.id"
         :celebrity="celeb"
-        :is-layered="selected === 'list'"
+        :is-layered="selectedOption === 'list'"
       />
     </ol>
     <p v-else>There aren't enough celebrities... soon.</p>
@@ -19,23 +19,40 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useCelebritiesStore } from '@/stores/useCelebritiesStore';
 import CardComponent from '@/components/card/CardComponent.vue';
 import SelectComponent from '@/components/select/SelectComponent.vue';
+import { useBreakpoints } from '@/composables/useBreakPoints';
 
 const store = useCelebritiesStore();
+
+const { type } = useBreakpoints();
 const { celebrities } = storeToRefs(store);
-const selected = ref<string>('grid');
+
+const selectedOption = ref<string>('grid');
 
 const layeredClasses = computed(() => ({
-  layered: selected.value === 'list' ? true : false,
+  layered: selectedOption.value === 'list' ? true : false,
 }));
 
 const onChangeSelect = (option: string) => {
-  selected.value = option;
+  selectedOption.value = option;
 };
+
+watch(selectedOption, (value) => {
+  if( value ) {
+    console.log(value);
+    selectedOption.value = value;
+  }
+});
+
+watch(type, (value) => {
+  if( value === 'xs') {
+    selectedOption.value = 'grid';
+  }
+}, {immediate: true, deep: true});
 </script>
 
 <style scoped lang="scss">

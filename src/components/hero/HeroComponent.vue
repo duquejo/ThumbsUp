@@ -51,6 +51,15 @@
       </div>
     </div>
   </header>
+  <header class="hero" v-else>
+    <img
+      class="hero__background"
+      :srcset="`/assets/img/pope-francis.png 750w, /assets/img/pope-francis@2x.png 1440w`"
+      sizes="(min-width: 750px) 1440px, 100vw"
+      :src="`/assets/img/pope-francis.png`"
+      alt="Pope Francis"
+    />
+  </header>
 </template>
 
 <script setup lang="ts">
@@ -74,3 +83,9 @@ const glassImageBackground = computed(() => ({
   background: `center no-repeat linear-gradient(var(--color-dark-background), var(--color-dark-background)), -25vw 0/160vw no-repeat url('../assets/img/${getRandomCelebrity.value.picture}.png')`,
 }));
 </script>
+
+<style scoped>
+img {
+  object-position: center;
+}
+</style>

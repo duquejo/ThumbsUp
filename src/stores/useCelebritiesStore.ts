@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import type { ICelebrity } from '@/interfaces/Celebrities';
-import useLocalStorage from '../composables/useLocalStorage';
+import useLocalStorage from '@/composables/useLocalStorage';
 import { postCelebrityVote } from '@/api/celebritiesApi';
 
 export type VoteTypes = 'positive' | 'negative';
@@ -29,14 +29,11 @@ export const useCelebritiesStore = defineStore('celebrities', () => {
         }
         return celeb;
       });
-      
-      if( ! [ 'development', 'test' ].includes(import.meta.env.MODE) ) {
+      if( import.meta.env.VITE_VOTES_URL ) {
         postCelebrityVote(id, vote);
       }
-      
       saveItem(celebrities.value);
     },
-
     setCelebritiesState: (newCelebs: ICelebrity[]) => {
       celebrities.value = newCelebs;
       saveItem(newCelebs);

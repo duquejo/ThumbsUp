@@ -67,6 +67,7 @@ const layoutHandler = computed(() => ({
 const cardBackground = computed(() => ({
   background: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), no-repeat url('../assets/img/${props.celebrity.picture}.png')`,
   backgroundSize: 'cover',
+  backgroundPosition: 'center',
 }));
 
 const getCelebrityStatusById = computed(() => {
