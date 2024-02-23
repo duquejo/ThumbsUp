@@ -29,7 +29,11 @@ export const useCelebritiesStore = defineStore('celebrities', () => {
         }
         return celeb;
       });
-      postCelebrityVote(id, vote);
+      
+      if( ! [ 'development', 'test' ].includes(import.meta.env.MODE) ) {
+        postCelebrityVote(id, vote);
+      }
+      
       saveItem(celebrities.value);
     },
 

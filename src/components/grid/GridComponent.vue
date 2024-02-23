@@ -6,21 +6,22 @@
         <SelectComponent :options="['list', 'grid']" :default="selected" @input="onChangeSelect" />
       </div>
     </div>
-    <ol class="main__container" :class="layeredClasses">
+    <ol class="main__container" :class="layeredClasses" v-if="celebrities.length > 0">
       <CardComponent
-        v-if="celebrities"
         v-for="celeb in celebrities"
+        :key="celeb.id"
         :celebrity="celeb"
         :is-layered="selected === 'list'"
       />
     </ol>
+    <p v-else>There aren't enough celebrities... soon.</p>
   </main>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useCelebritiesStore } from '@/stores/celebrities';
+import { useCelebritiesStore } from '@/stores/useCelebritiesStore';
 import CardComponent from '@/components/card/CardComponent.vue';
 import SelectComponent from '@/components/select/SelectComponent.vue';
 
@@ -40,6 +41,9 @@ const onChangeSelect = (option: string) => {
 <style scoped lang="scss">
 main {
   .main {
+    p {
+      font-size: 1.5rem;
+    }
     &__header {
       display: flex;
       flex-direction: row;

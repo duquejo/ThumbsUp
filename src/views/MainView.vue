@@ -43,5 +43,4 @@
 <script setup lang="ts">
 import FooterComponent from '@/components/footer/FooterComponent.vue';
 import GridComponent from '@/components/grid/GridComponent.vue';
-import GeneralLayout from '@/layouts/GeneralLayout.vue';
 </script>

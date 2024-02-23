@@ -55,7 +55,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useCelebritiesStore } from '@/stores/celebrities';
+import { useCelebritiesStore } from '@/stores/useCelebritiesStore';
 import type { ICelebrity } from '@/interfaces/Celebrities';
 import { storeToRefs } from 'pinia';
 

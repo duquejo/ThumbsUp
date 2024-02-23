@@ -2,12 +2,11 @@ import { VueWrapper, shallowMount } from '@vue/test-utils';
 import CardComponentVue from '@/components/card/CardComponent.vue';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { createTestingPinia } from '@pinia/testing';
-import { useCelebritiesStore } from '@/stores/celebrities';
 import { data } from '@/data.json'
 
-vi.mock('@/stores/celebrities', () => ({
+vi.mock('@/stores/useCelebritiesStore', () => ({
   useCelebritiesStore: vi.fn(() => ({
-    getCelebrityStatusById: (id: number) => {
+    getCelebrityStatusById: () => {
       return {
         value: 'positive',
       };

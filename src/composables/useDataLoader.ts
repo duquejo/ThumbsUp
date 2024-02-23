@@ -1,8 +1,9 @@
 import { ref } from 'vue';
 import useLocalStorage from '@/composables/useLocalStorage';
-import { useCelebritiesStore } from '@/stores/celebrities';
+import { useCelebritiesStore } from '@/stores/useCelebritiesStore';
 import type { ICelebrity } from '@/interfaces/Celebrities';
 import { getCelebrities } from '@/api/celebritiesApi';
+import { data } from '@/data.json';
 
 const useDataLoader = () => {
   const { getItem } = useLocalStorage('celebrities');
@@ -15,7 +16,13 @@ const useDataLoader = () => {
     loadData: async () => {
       const cacheData: ICelebrity[] = getItem<ICelebrity>();
       if (cacheData.length === 0) {
-        const freshData = await getCelebrities();
+
+        let freshData;
+        if ( ! [ 'development', 'test' ].includes(import.meta.env.MODE) ) {
+          freshData = await getCelebrities();
+        } else {
+          freshData = data;
+        }
         if (freshData) {
           store.setCelebritiesState(freshData);
         }

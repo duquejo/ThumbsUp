@@ -38,8 +38,8 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import EyebrowComponent from '@/components/eyebrow/EyebrowComponent.vue';
-import type { VoteTypes } from '@/stores/celebrities';
-import { useCelebritiesStore } from '@/stores/celebrities';
+import type { VoteTypes } from '@/stores/useCelebritiesStore';
+import { useCelebritiesStore } from '@/stores/useCelebritiesStore';
 
 const store = useCelebritiesStore();
 

@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { VueWrapper, shallowMount } from '@vue/test-utils';
 import MainViewVue from '@/views/MainView.vue';
 

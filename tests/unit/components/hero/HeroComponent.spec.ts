@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { VueWrapper, shallowMount } from '@vue/test-utils';
 import HeroComponentVue from '@/components/hero/HeroComponent.vue';
 import { createTestingPinia } from '@pinia/testing';
-import { useCelebritiesStore } from '@/stores/celebrities';
+import { useCelebritiesStore } from '@/stores/useCelebritiesStore';
 import { data } from '@/data.json';
 
 describe('+ HeroComponent unit tests', () => {

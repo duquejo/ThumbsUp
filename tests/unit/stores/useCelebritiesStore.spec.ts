@@ -1,10 +1,9 @@
-// stores/counter.spec.ts
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { setActivePinia, createPinia, storeToRefs } from 'pinia';
-import { useCelebritiesStore } from '@/stores/celebrities';
+import { useCelebritiesStore } from '@/stores/useCelebritiesStore';
 import { data } from '@/data.json';
 
-describe('+ Celebrities store', () => {
+describe('+ useCelebritiesStore unit tests', () => {
 
   const setItemSpy = vi.spyOn(Storage.prototype, 'setItem');
 

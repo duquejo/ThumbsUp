@@ -79,8 +79,8 @@ const selected = ref<string | null>(props.default ? props.default : null);
     &::after {
       position: absolute;
       content: '';
-      top: 50%;
-      transform: translateY(-50%);
+      top: 70%;
+      transform: translateY(-70%);
       right: 1em;
       width: 0;
       height: 0;
