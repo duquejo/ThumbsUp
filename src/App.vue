@@ -1,6 +1,6 @@
 <template>
-  <transition v-show="isDataLoaded" name="slide-fade">
-    <div>
+  <transition name="slide-fade">
+    <div v-show="isDataLoaded">
       <NavigationComponent />
       <HeroComponent />
       <GeneralLayout>
@@ -20,7 +20,7 @@ import useDataLoader from '@/composables/useDataLoader';
 
 const { isDataLoaded, loadData } = useDataLoader();
 
-onMounted(async () => {
+onMounted(() => {
   loadData();
 });
 </script>

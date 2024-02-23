@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "test:ci": "vitest run",
     "test": "vitest --watch --exclude **/integration/**",
-    "test:coverage": "vitest --coverage",
+    "test:coverage": "vitest --coverage --exclude **/integration/**",
     "test:integration": "vitest related ./tests/integration/integration.spec.ts",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",

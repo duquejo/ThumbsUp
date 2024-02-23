@@ -4,7 +4,7 @@ import { createTestingPinia } from '@pinia/testing';
 import GridComponentVue from '@/components/grid/GridComponent.vue';
 import CardComponentVue from '@/components/card/CardComponent.vue';
 import SelectComponentVue from '@/components/select/SelectComponent.vue';
-import { useCelebritiesStore } from '@/stores/celebrities';
+import { useCelebritiesStore } from '@/stores/useCelebritiesStore';
 import { data } from '@/data.json';
 
 describe('+ HeroComponent unit tests', () => {
@@ -32,5 +32,23 @@ describe('+ HeroComponent unit tests', () => {
   it('should render expected child components', () => {
     expect(wrapper.findComponent(SelectComponentVue).exists()).toBeTruthy();
     expect(wrapper.findAllComponents(CardComponentVue).length).toBeGreaterThan(0);
+  });
+
+  it('should render a default text of there are no celebrities loaded', () => {
+    const store = useCelebritiesStore();
+    store.celebrities = [];
+
+    const modWrapper = shallowMount(GridComponentVue, {
+      global: {
+        plugins: [createTestingPinia({
+          createSpy: vi.fn(),
+        })],
+      },
+    });
+
+    expect(modWrapper.html()).toMatchSnapshot();
+    expect(modWrapper.findComponent(SelectComponentVue).exists()).toBeTruthy();
+    expect(modWrapper.find('p').text()).toBe('There aren\'t enough celebrities... soon.');
+    expect(modWrapper.findAllComponents(CardComponentVue).length).toBe(0);
   });
 });

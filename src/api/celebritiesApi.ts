@@ -1,6 +1,6 @@
 import axios from 'axios';
 import type { ICelebrity } from '@/interfaces/Celebrities';
-import type { VoteTypes } from '@/stores/celebrities';
+import type { VoteTypes } from '@/stores/useCelebritiesStore';
 
 const baseURL = import.meta.env.VITE_CELEBRITIES_BASEURL;
 

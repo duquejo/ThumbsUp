@@ -1,7 +1,6 @@
-import axios from 'axios';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { getCelebrities, postCelebrityVote } from '@/api/celebritiesApi';
-import type { VoteTypes } from '@/stores/celebrities';
+import type { VoteTypes } from '@/stores/useCelebritiesStore';
 
 const mocks = vi.hoisted(() => ({
   get: vi.fn(),

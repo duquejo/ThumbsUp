@@ -2,9 +2,9 @@ import ThumbButtonsComponentVue from '@/components/thumb-buttons/ThumbButtonsCom
 import { VueWrapper, shallowMount } from '@vue/test-utils';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createTestingPinia } from '@pinia/testing';
-import { useCelebritiesStore } from '@/stores/celebrities';
+import { useCelebritiesStore } from '@/stores/useCelebritiesStore';
 
-vi.mock('@/stores/celebrities', () => ({
+vi.mock('@/stores/useCelebritiesStore', () => ({
   useCelebritiesStore: vi.fn(() => ({
     celebrityVote: vi.fn()
   }))
