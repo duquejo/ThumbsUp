@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-select" :tabindex="props.tabIndex" @blur="open = false">
+  <div class="layout-select" :tabindex="props.tabIndex" @blur="open = false" role="select">
     <div class="layout-select__selected" @click="open = !open">
       {{ selected }}
     </div>
