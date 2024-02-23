@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`+ MainView unit test > should render properly 1`] = `
-"<aside class="banner banner-top" role="doc-tip" aria-label="Speak Out">
+"<aside class="banner banner-top" role="doc-tip" aria-label="Speak Out" title="Click to close">
   <div class="banner__left"><span class="banner__hairline">Speak out. Be heard.</span><span class="banner__title">Be counted</span></div>
   <div class="banner__right">
     <p class="banner__text"> Rule of Thumb is a crowd sourced court of public opinion where anyone and everyone can speak out and speak freely. It’s easy: You share your opinion, we analyze and put the data in a public report. </p>

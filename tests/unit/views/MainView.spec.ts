@@ -13,4 +13,13 @@ describe('+ MainView unit test', () => {
   it('should render properly', () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
+  
+  it('should close the message box after click', async () => {
+    const buttonTimes = wrapper.find('button.icon-button');
+    expect(buttonTimes.isVisible()).toBeTruthy();
+
+    await buttonTimes.trigger('click');
+
+    expect(wrapper.find('.banner-top').exists()).toBeFalsy();
+  });
 });

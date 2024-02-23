@@ -41,13 +41,6 @@ const onChangeSelect = (option: string) => {
   selectedOption.value = option;
 };
 
-watch(selectedOption, (value) => {
-  if( value ) {
-    console.log(value);
-    selectedOption.value = value;
-  }
-});
-
 watch(type, (value) => {
   if( value === 'xs') {
     selectedOption.value = 'grid';

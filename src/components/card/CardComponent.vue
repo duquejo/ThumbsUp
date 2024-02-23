@@ -37,7 +37,7 @@
           />
         </div>
       </div>
-      <div class="card__gap"></div>
+      <div class="card__gap" aria-hidden="true" />
     </div>
 
     <!-- Thumbs gauge percentage -->
@@ -65,9 +65,10 @@ const layoutHandler = computed(() => ({
 }));
 
 const cardBackground = computed(() => ({
-  background: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), no-repeat url('../assets/img/${props.celebrity.picture}.png')`,
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
+  background: ! props.isLayered ? `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), no-repeat url('../assets/img/${props.celebrity.picture}.png')` : `url('../assets/img/${props.celebrity.picture}.png')`,
+  backgroundSize: ! props.isLayered ? 'cover' : 'contain',
+  backgroundPosition: ! props.isLayered ? 'center' : 'left',
+  backgroundRepeat: 'no-repeat',
 }));
 
 const getCelebrityStatusById = computed(() => {
@@ -179,8 +180,8 @@ const getCelebrityStatusById = computed(() => {
     }
 
     &.card__background {
-      background-size: contain !important;
-      background-color: gray;
+      background-color: rgb(110, 110, 110);
+      background-repeat: no-repeat;
 
       &::after {
         position: absolute;
@@ -188,10 +189,10 @@ const getCelebrityStatusById = computed(() => {
         background: rgb(110, 110, 110);
         background: linear-gradient(
           90deg,
-          rgba(110, 110, 110, 0) 10%,
-          rgb(122, 122, 122) 15%,
-          rgb(77, 77, 77) 50%,
-          rgba(122, 122, 122, 1) 80%
+          rgba(110, 110, 110, 0) 3%,
+          rgb(120, 120, 120) 13%,
+          rgb(110, 110, 110) 50%,
+          rgba(120, 120, 120, 1) 80%
         );
         top: 0;
         left: 0;

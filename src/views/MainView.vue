@@ -1,5 +1,5 @@
 <template>
-  <aside class="banner banner-top" role="doc-tip" aria-label="Speak Out">
+  <aside class="banner banner-top" role="doc-tip" aria-label="Speak Out" title="Click to close" v-if="! isClosedDesktop" >
     <div class="banner__left">
       <span class="banner__hairline">Speak out. Be heard.</span>
       <span class="banner__title">Be counted</span>
@@ -11,7 +11,7 @@
         public report.
       </p>
     </div>
-    <button class="icon-button" aria-label="close">
+    <button class="icon-button" aria-label="close" @click="onCloseHandler">
       <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
         <g stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd">
           <path d="M1 19L19 1M1 1l18 18" />
@@ -41,6 +41,11 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import FooterComponent from '@/components/footer/FooterComponent.vue';
 import GridComponent from '@/components/grid/GridComponent.vue';
+
+const isClosedDesktop = ref<boolean>(false);
+
+const onCloseHandler = () => isClosedDesktop.value = ! isClosedDesktop.value;
 </script>

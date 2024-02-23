@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`+ CardComponent unit tests > should render properly 1`] = `
-"<li data-v-d766fe8c="" class="card card__background" style="background-size: cover; background-position: center;">
+"<li data-v-d766fe8c="" class="card card__background" style="background-size: cover; background-position: center; background-repeat: no-repeat;">
   <!-- General card container -->
   <div data-v-d766fe8c="" class="card__container"><span data-v-d766fe8c="" class="card__icon"><button data-v-d766fe8c="" class="icon-button card-thumb-button" aria-label="thumbs up"><img data-v-d766fe8c="" src="/assets/img/thumbs-up.svg" alt="thumbs up"></button></span><!-- Central card container -->
     <div data-v-d766fe8c="" class="card__content">
@@ -14,14 +14,14 @@ exports[`+ CardComponent unit tests > should render properly 1`] = `
         <thumb-buttons-component-stub data-v-d766fe8c="" lastupdated="2020-03-10T23:08:57.892Z" category="religion" id="0"></thumb-buttons-component-stub>
       </div>
     </div>
-    <div data-v-d766fe8c="" class="card__gap"></div>
+    <div data-v-d766fe8c="" class="card__gap" aria-hidden="true"></div>
   </div><!-- Thumbs gauge percentage -->
   <thumb-gauge-component-stub data-v-d766fe8c="" votes="[object Object]"></thumb-gauge-component-stub>
 </li>"
 `;
 
 exports[`+ CardComponent unit tests > should set by default grid mode - Layered class added 1`] = `
-"<li data-v-d766fe8c="" class="card card__background layered" style="background-size: cover; background-position: center;">
+"<li data-v-d766fe8c="" class="card card__background layered" style="background: url(../assets/img/pope-francis.png); background-size: contain; background-position: left; background-repeat: no-repeat;">
   <!-- General card container -->
   <div data-v-d766fe8c="" class="card__container"><span data-v-d766fe8c="" class="card__icon"><button data-v-d766fe8c="" class="icon-button card-thumb-button" aria-label="thumbs up"><img data-v-d766fe8c="" src="/assets/img/thumbs-up.svg" alt="thumbs up"></button></span><!-- Central card container -->
     <div data-v-d766fe8c="" class="card__content">
@@ -34,7 +34,7 @@ exports[`+ CardComponent unit tests > should set by default grid mode - Layered 
         <thumb-buttons-component-stub data-v-d766fe8c="" lastupdated="2020-03-10T23:08:57.892Z" category="religion" id="0"></thumb-buttons-component-stub>
       </div>
     </div>
-    <div data-v-d766fe8c="" class="card__gap"></div>
+    <div data-v-d766fe8c="" class="card__gap" aria-hidden="true"></div>
   </div><!-- Thumbs gauge percentage -->
   <thumb-gauge-component-stub data-v-d766fe8c="" votes="[object Object]"></thumb-gauge-component-stub>
 </li>"

@@ -31,10 +31,10 @@
           </p>
           <p class="featured-card__cta">What’s Your Veredict?</p>
           <div class="featured-card__buttons">
-            <button class="icon-button" aria-label="thumbs up">
-              <img src="/assets/img/thumbs-up.svg" alt="thumbs up" />
+            <button class="icon-button" aria-label="thumbs up" :title="isLockedText" @click="() => onButtonClick(getRandomCelebrity.id, 'positive')" :disabled="isLocked">
+              <img src="/assets/img/thumbs-up.svg" alt="thumbs up"/>
             </button>
-            <button class="icon-button" aria-label="thumbs down">
+            <button class="icon-button" aria-label="thumbs down" :title="isLockedText" @click="() => onButtonClick(getRandomCelebrity.id, 'negative')" :disabled="isLocked">
               <img src="/assets/img/thumbs-down.svg" alt="thumbs down" />
             </button>
           </div>
@@ -63,17 +63,25 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import type { VoteTypes } from '@/stores/useCelebritiesStore';
 import { useCelebritiesStore } from '@/stores/useCelebritiesStore';
 import type { ICelebrity } from '@/interfaces/Celebrities';
-import { storeToRefs } from 'pinia';
 
 const store = useCelebritiesStore();
 const { celebrities } = storeToRefs(store);
 
+const isLocked = ref<boolean>(false);
+
 const getRandomCelebrity = computed<ICelebrity>(() => {
   return celebrities.value[Math.floor(Math.random() * celebrities.value.length)];
 });
+
+const onButtonClick = (id: number, vote: VoteTypes) => {
+  isLocked.value = true;
+  store.celebrityVote(id, vote);
+};
 
 const wikipediaSearch = computed(
   () => `https://en.wikipedia.org/wiki/${getRandomCelebrity.value.name}`,
@@ -82,6 +90,8 @@ const wikipediaSearch = computed(
 const glassImageBackground = computed(() => ({
   background: `center no-repeat linear-gradient(var(--color-dark-background), var(--color-dark-background)), -25vw 0/160vw no-repeat url('../assets/img/${getRandomCelebrity.value.picture}.png')`,
 }));
+
+const isLockedText = computed(() => isLocked.value ? 'You already voted, thank you' : 'Click to vote');
 </script>
 
 <style scoped>
