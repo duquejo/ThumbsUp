@@ -76,7 +76,7 @@ describe('+ getCelebrities', () => {
     }
     
     expect(mocks.get).toHaveBeenCalled();
-    expect(mocks.get).toHaveBeenCalledWith(votesURL);
+    expect(mocks.get).toHaveBeenCalledWith(celebritiesURL);
   });
 
   it('should catch any error from the postCelebrityVote API', async () => {
