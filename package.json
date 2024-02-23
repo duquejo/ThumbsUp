@@ -2,8 +2,13 @@
   "name": "thumbsup",
   "version": "0.0.0",
   "private": true,
+  "engineStrict": true,
+  "engines": {
+    "node": "18.16.0"
+  },
   "type": "module",
   "scripts": {
+    "requirements-check": "node check_node_version.cjs",
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
@@ -20,6 +25,7 @@
     "axios": "^1.6.7",
     "date-fns": "^3.3.1",
     "pinia": "^2.1.7",
+    "semver": "^7.6.0",
     "vue": "^3.4.15"
   },
   "devDependencies": {

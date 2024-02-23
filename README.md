@@ -1,5 +1,10 @@
 # thumbsup
 
+`docker build -t thumbsup .`
+`docker run -p 8080:8080 thumbsup`
+`docker run -d -p 8080:8080 thumbsup`
+`docker exec -it {container_id} sh`
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
