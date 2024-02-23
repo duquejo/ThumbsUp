@@ -1,5 +1,11 @@
 <template>
-  <aside class="banner banner-top" role="doc-tip" aria-label="Speak Out" title="Click to close" v-if="! isClosedDesktop" >
+  <aside
+    class="banner banner-top"
+    role="doc-tip"
+    aria-label="Speak Out"
+    title="Click to close"
+    v-if="!isClosedDesktop"
+  >
     <div class="banner__left">
       <span class="banner__hairline">Speak out. Be heard.</span>
       <span class="banner__title">Be counted</span>
@@ -47,5 +53,5 @@ import GridComponent from '@/components/grid/GridComponent.vue';
 
 const isClosedDesktop = ref<boolean>(false);
 
-const onCloseHandler = () => isClosedDesktop.value = ! isClosedDesktop.value;
+const onCloseHandler = () => (isClosedDesktop.value = !isClosedDesktop.value);
 </script>

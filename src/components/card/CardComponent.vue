@@ -65,9 +65,11 @@ const layoutHandler = computed(() => ({
 }));
 
 const cardBackground = computed(() => ({
-  background: ! props.isLayered ? `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), no-repeat url('../assets/img/${props.celebrity.picture}.png')` : `url('../assets/img/${props.celebrity.picture}.png')`,
-  backgroundSize: ! props.isLayered ? 'cover' : 'contain',
-  backgroundPosition: ! props.isLayered ? 'center' : 'left',
+  background: !props.isLayered
+    ? `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), no-repeat url('../assets/img/${props.celebrity.picture}.png')`
+    : `url('../assets/img/${props.celebrity.picture}.png')`,
+  backgroundSize: !props.isLayered ? 'cover' : 'contain',
+  backgroundPosition: !props.isLayered ? 'center' : 'left',
   backgroundRepeat: 'no-repeat',
 }));
 

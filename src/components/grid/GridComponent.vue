@@ -3,7 +3,11 @@
     <div class="main__header">
       <span class="main__header-title">Previous Rulings</span>
       <div class="main__header-select">
-        <SelectComponent :options="['list', 'grid']" :default="selectedOption" @input="onChangeSelect" />
+        <SelectComponent
+          :options="['list', 'grid']"
+          :default="selectedOption"
+          @input="onChangeSelect"
+        />
       </div>
     </div>
     <ol class="main__container" :class="layeredClasses" v-if="celebrities.length > 0">
@@ -41,11 +45,15 @@ const onChangeSelect = (option: string) => {
   selectedOption.value = option;
 };
 
-watch(type, (value) => {
-  if( value === 'xs') {
-    selectedOption.value = 'grid';
-  }
-}, {immediate: true, deep: true});
+watch(
+  type,
+  (value) => {
+    if (value === 'xs') {
+      selectedOption.value = 'grid';
+    }
+  },
+  { immediate: true, deep: true },
+);
 </script>
 
 <style scoped lang="scss">

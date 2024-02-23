@@ -31,10 +31,22 @@
           </p>
           <p class="featured-card__cta">What’s Your Veredict?</p>
           <div class="featured-card__buttons">
-            <button class="icon-button" aria-label="thumbs up" :title="isLockedText" @click="() => onButtonClick(getRandomCelebrity.id, 'positive')" :disabled="isLocked">
-              <img src="/assets/img/thumbs-up.svg" alt="thumbs up"/>
+            <button
+              class="icon-button"
+              aria-label="thumbs up"
+              :title="isLockedText"
+              @click="() => onButtonClick(getRandomCelebrity.id, 'positive')"
+              :disabled="isLocked"
+            >
+              <img src="/assets/img/thumbs-up.svg" alt="thumbs up" />
             </button>
-            <button class="icon-button" aria-label="thumbs down" :title="isLockedText" @click="() => onButtonClick(getRandomCelebrity.id, 'negative')" :disabled="isLocked">
+            <button
+              class="icon-button"
+              aria-label="thumbs down"
+              :title="isLockedText"
+              @click="() => onButtonClick(getRandomCelebrity.id, 'negative')"
+              :disabled="isLocked"
+            >
               <img src="/assets/img/thumbs-down.svg" alt="thumbs down" />
             </button>
           </div>
@@ -91,7 +103,9 @@ const glassImageBackground = computed(() => ({
   background: `center no-repeat linear-gradient(var(--color-dark-background), var(--color-dark-background)), -25vw 0/160vw no-repeat url('../assets/img/${getRandomCelebrity.value.picture}.png')`,
 }));
 
-const isLockedText = computed(() => isLocked.value ? 'You already voted, thank you' : 'Click to vote');
+const isLockedText = computed(() =>
+  isLocked.value ? 'You already voted, thank you' : 'Click to vote',
+);
 </script>
 
 <style scoped>
