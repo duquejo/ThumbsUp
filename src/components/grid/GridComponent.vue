@@ -3,39 +3,65 @@
     <div class="main__header">
       <span class="main__header-title">Previous Rulings</span>
       <div class="main__header-select">
-        <SelectComponent :options="[ 'list', 'grid' ]" :default="selected" @input="onChangeSelect" />
+        <SelectComponent
+          :options="['list', 'grid']"
+          :default="selectedOption"
+          @input="onChangeSelect"
+        />
       </div>
     </div>
-    <ol class="main__container" :class="layeredClasses">
-      <CardComponent v-for="celeb in celebs" :celebrity="celeb" :is-layered="selected === 'list'" />
+    <ol class="main__container" :class="layeredClasses" v-if="celebrities.length > 0">
+      <CardComponent
+        v-for="celeb in celebrities"
+        :key="celeb.id"
+        :celebrity="celeb"
+        :is-layered="selectedOption === 'list'"
+      />
     </ol>
+    <p v-else>There aren't enough celebrities... soon.</p>
   </main>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import type { ICelebrity } from '../../interfaces/celebrities';
+import { ref, computed, watch } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useCelebritiesStore } from '@/stores/useCelebritiesStore';
 import CardComponent from '@/components/card/CardComponent.vue';
-import { useCelebritiesStore } from '@/stores/celebrities';
 import SelectComponent from '@/components/select/SelectComponent.vue';
+import { useBreakpoints } from '@/composables/useBreakPoints';
 
-const { celebrities } = useCelebritiesStore();
+const store = useCelebritiesStore();
 
-const celebs = ref<ICelebrity[]>(celebrities);
-const selected = ref<string>('grid');
+const { type } = useBreakpoints();
+const { celebrities } = storeToRefs(store);
+
+const selectedOption = ref<string>('grid');
 
 const layeredClasses = computed(() => ({
-  'layered': selected.value === 'list' ?  true : false,
+  layered: selectedOption.value === 'list' ? true : false,
 }));
 
 const onChangeSelect = (option: string) => {
-  selected.value = option;
-}
+  selectedOption.value = option;
+};
+
+watch(
+  type,
+  (value) => {
+    if (value === 'xs') {
+      selectedOption.value = 'grid';
+    }
+  },
+  { immediate: true, deep: true },
+);
 </script>
 
 <style scoped lang="scss">
 main {
   .main {
+    p {
+      font-size: 1.5rem;
+    }
     &__header {
       display: flex;
       flex-direction: row;
@@ -63,7 +89,7 @@ main {
       grid-auto-flow: column;
       margin-top: 20px;
       overflow-x: scroll;
-      
+
       @media (min-width: 768px) {
         grid-auto-flow: row;
         grid-auto-columns: auto;

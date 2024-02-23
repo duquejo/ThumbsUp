@@ -1,24 +1,36 @@
-
 <template>
   <div class="card__thumbs-percentage">
     <div class="icon-values">
-      <span><img src="/assets/img/thumbs-up.svg" alt="thumbs down" />{{ calculatedVotes.positive }}</span>
-      <span>{{ calculatedVotes.negative }}<img src="/assets/img/thumbs-down.svg" alt="thumbs down" /></span>
+      <span
+        ><img src="/assets/img/thumbs-up.svg" alt="thumbs down" />{{
+          calculatedVotes.positive
+        }}</span
+      >
+      <span
+        >{{ calculatedVotes.negative }}<img src="/assets/img/thumbs-down.svg" alt="thumbs down"
+      /></span>
     </div>
     <div class="icon-background">
-      <span class="icon-percentage" aria-label="thumbs up" :style="{ width: calculatedVotes.positive }"></span>
-      <span class="icon-percentage" aria-label="thumbs down"
-        :style="{ width: calculatedVotes.negative }"></span>
+      <span
+        class="icon-percentage"
+        aria-label="thumbs up"
+        :style="{ width: calculatedVotes.positive }"
+      ></span>
+      <span
+        class="icon-percentage"
+        aria-label="thumbs down"
+        :style="{ width: calculatedVotes.negative }"
+      ></span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { IVotes } from '../../interfaces/celebrities';
+import type { IVotes } from '@/interfaces/Celebrities';
 
 interface Props {
-  votes?: IVotes,
+  votes?: IVotes;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -29,8 +41,15 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const calculatedVotes = computed(() => {
-
   const totalOfVotes = props.votes.positive + props.votes.negative;
+
+  if (totalOfVotes === 0) {
+    return {
+      positive: '0%',
+      negative: '0%',
+    };
+  }
+
   const positiveCount = Math.round((props.votes.positive / totalOfVotes) * 100);
   const negativeCount = Math.round((props.votes.negative / totalOfVotes) * 100);
   return {
@@ -38,8 +57,6 @@ const calculatedVotes = computed(() => {
     negative: `${negativeCount}%`,
   };
 });
-
-
 </script>
 
 <style scoped>
@@ -94,7 +111,6 @@ const calculatedVotes = computed(() => {
         justify-content: flex-end;
       }
     }
-
   }
 }
-</style>../../interfaces/celebrities
+</style>

@@ -1,21 +1,26 @@
 <template>
-  <li class="card card__background" :class="layoutHandler">
-
+  <li class="card card__background" :style="cardBackground" :class="layoutHandler">
     <!-- General card container -->
     <div class="card__container">
-
       <span class="card__icon">
-        <button v-if="getCelebrityStatusById(props.celebrity.id).value === 'positive'" class="icon-button card-thumb-button" aria-label="thumbs up">
+        <button
+          v-if="getCelebrityStatusById === 'positive'"
+          class="icon-button card-thumb-button"
+          aria-label="thumbs up"
+        >
           <img src="/assets/img/thumbs-up.svg" alt="thumbs up" />
         </button>
-        <button v-else-if="getCelebrityStatusById(props.celebrity.id).value == 'negative'" class="icon-button card-thumb-button" aria-label="thumbs down">
+        <button
+          v-else-if="getCelebrityStatusById == 'negative'"
+          class="icon-button card-thumb-button"
+          aria-label="thumbs down"
+        >
           <img src="/assets/img/thumbs-down.svg" alt="thumbs down" />
         </button>
       </span>
 
       <!-- Central card container -->
       <div class="card__content">
-
         <!-- Main info -->
         <div class="card__content-top">
           <span class="card__title">{{ props.celebrity.name }}</span>
@@ -25,11 +30,14 @@
         <!-- Actions -->
         <div class="card__content-bottom">
           <!-- Vote action container -->
-          <ThumbButtonsComponent :last-updated="props.celebrity.lastUpdated" :category="props.celebrity.category"
-            :id="props.celebrity.id" />
+          <ThumbButtonsComponent
+            :last-updated="props.celebrity.lastUpdated"
+            :category="props.celebrity.category"
+            :id="props.celebrity.id"
+          />
         </div>
       </div>
-      <div class="card__gap"></div>
+      <div class="card__gap" aria-hidden="true" />
     </div>
 
     <!-- Thumbs gauge percentage -->
@@ -39,12 +47,9 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { ICelebrity } from '@/interfaces/celebrities';
+import type { ICelebrity } from '@/interfaces/Celebrities';
 import ThumbGaugeComponent from '@/components/thumb-gauge/ThumbGaugeComponent.vue';
 import ThumbButtonsComponent from '@/components/thumb-buttons/ThumbButtonsComponent.vue';
-import { useCelebritiesStore, type VoteTypes } from '@/stores/celebrities';
-
-const { getCelebrityStatusById } = useCelebritiesStore();
 
 interface Props {
   celebrity: ICelebrity;
@@ -56,24 +61,37 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const layoutHandler = computed(() => ({
-  'layered': props.isLayered,
+  layered: props.isLayered,
 }));
+
+const cardBackground = computed(() => ({
+  background: !props.isLayered
+    ? `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), no-repeat url('../assets/img/${props.celebrity.picture}.png')`
+    : `url('../assets/img/${props.celebrity.picture}.png')`,
+  backgroundSize: !props.isLayered ? 'cover' : 'contain',
+  backgroundPosition: !props.isLayered ? 'center' : 'left',
+  backgroundRepeat: 'no-repeat',
+}));
+
+const getCelebrityStatusById = computed(() => {
+  return props.celebrity.votes.positive >= props.celebrity.votes.negative ? 'positive' : 'negative';
+});
 </script>
 
 <style scoped lang="scss">
 .card {
-  color: #FFF;
+  color: var(--color-white);
   display: flex;
   flex-direction: column;
   height: 300px;
   max-width: 300px;
   justify-content: flex-end;
   position: relative;
-  row-gap: 16px;
+  row-gap: 1.5rem;
 
   @media all and (min-width: 767px) {
     max-width: 100%;
-    row-gap: 0.5rem;
+    row-gap: 0.8rem;
   }
 
   @media all and (min-width: 1100px) {
@@ -81,8 +99,6 @@ const layoutHandler = computed(() => ({
   }
 
   &.card__background {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), no-repeat url('../assets/img/pope-francis.png');
-    background-size: cover;
     position: relative;
   }
 
@@ -95,14 +111,13 @@ const layoutHandler = computed(() => ({
 
   &__icon {
     flex-grow: 0;
-    height: 1.875rem;
+    height: 30px;
     pointer-events: none;
   }
 
   &__gap {
     flex-grow: 1;
   }
-
 
   &__content {
     display: flex;
@@ -111,16 +126,28 @@ const layoutHandler = computed(() => ({
     flex-grow: 1;
     row-gap: 20.8px;
 
+    @media all and (min-width: 767px) {
+      row-gap: 1rem;
+    }
+
     &-top {
       display: flex;
       flex-direction: column;
       row-gap: 20.8px;
+
+      @media all and (min-width: 767px) {
+        row-gap: 1rem;
+      }
     }
 
     &-bottom {
       display: flex;
       flex-direction: column;
       row-gap: 20.8px;
+
+      @media all and (min-width: 1100px) {
+        row-gap: 1rem;
+      }
     }
   }
 
@@ -155,14 +182,20 @@ const layoutHandler = computed(() => ({
     }
 
     &.card__background {
-      background-size: contain;
-      background-color: gray;
+      background-color: rgb(110, 110, 110);
+      background-repeat: no-repeat;
 
       &::after {
         position: absolute;
         content: '';
         background: rgb(110, 110, 110);
-        background: linear-gradient(90deg, rgba(110, 110, 110, 0) 10%, rgba(147, 147, 147, 1) 20%, rgba(111, 111, 111, 1) 50%, rgba(147, 147, 147, 1) 80%);
+        background: linear-gradient(
+          90deg,
+          rgba(110, 110, 110, 0) 3%,
+          rgb(120, 120, 120) 13%,
+          rgb(110, 110, 110) 50%,
+          rgba(120, 120, 120, 1) 80%
+        );
         top: 0;
         left: 0;
         right: 0;
@@ -191,11 +224,16 @@ const layoutHandler = computed(() => ({
       column-gap: 19.2px;
       justify-content: space-around;
 
+      @media all and (min-width: 767px) {
+        justify-content: space-between;
+        align-items: flex-start;
+        margin: auto 1.5rem;
+      }
+
       &-top {
         flex-basis: 60%;
       }
     }
   }
-
 }
 </style>
