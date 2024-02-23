@@ -1,37 +1,39 @@
 name: Production Deployment workflow
 env:
- VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
- VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
- VITE_APP_TITLE: ${{ secrets.VITE_APP_TITLE }}
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VITE_APP_TITLE: ${{ secrets.VITE_APP_TITLE }}
+  VITE_CELEBRITIES_URL: ${{ secrets.VITE_CELEBRITIES_URL }}
+  VITE_VOTES_URL: ${{ secrets.VITE_VOTES_URL }}
 
 on:
- push:
-  branches:
-   - main
+  push:
+    branches:
+      - main
 
 jobs:
- build:
-  runs-on: ubuntu-latest
-  strategy:
-   matrix:
-    node-version: [18.X]
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.X]
 
-  steps:
-   - uses: actions/checkout@v4
-   - name: Use Node.js ${{ matrix.node-version }}
-     uses: actions/setup-node@v4
-     with:
-      node-version: ${{ matrix.node-version }}
-      cache: 'yarn'
-   - name: Install packages
-     run: yarn install --frozen-lockfile
-   - name: Run tests locally
-     run: yarn test:coverage
-   - name: Install Vercel CLI
-     run: yarn global add vercel@latest
-   - name: Pull Vercel Environment Information
-     run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-   - name: Build Project Artifacts
-     run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-   - name: Deploy Project Artifacts to Vercel
-     run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+      - name: Install packages
+        run: yarn install --frozen-lockfile
+      - name: Run tests locally
+        run: yarn test:coverage
+      - name: Install Vercel CLI
+        run: yarn global add vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
