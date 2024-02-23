@@ -11,6 +11,7 @@ export default mergeConfig(
         ...configDefaults.exclude,
         'e2e/*',
         '**/*.d.ts',
+        '**/*.cjs',
       ],
       coverage: {
         exclude: [
@@ -19,7 +20,8 @@ export default mergeConfig(
           '**/assets/**',
           '**/interfaces/*.ts',
           '**/*.d.ts',
-          'tests/integration/**'
+          'tests/integration/**',
+          '**/*.cjs',
         ]
       },
       root: fileURLToPath(new URL('./', import.meta.url))
