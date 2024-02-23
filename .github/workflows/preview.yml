@@ -8,8 +8,8 @@ env:
 
 on:
   push:
-    branches-ignore:
-      - main
+    branches:
+      - develop
 
 jobs:
   build-preview:
