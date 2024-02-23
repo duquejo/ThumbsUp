@@ -15,8 +15,6 @@ vi.mock('@/stores/celebrities', () => ({
   }))
 }));
 
-const useCelebrityStoreMock = vi.mocked(useCelebritiesStore);
-
 describe('+ CardComponent unit tests', () => {
 
   const properties = {

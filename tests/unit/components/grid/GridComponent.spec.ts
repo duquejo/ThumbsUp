@@ -4,6 +4,8 @@ import { createTestingPinia } from '@pinia/testing';
 import GridComponentVue from '@/components/grid/GridComponent.vue';
 import CardComponentVue from '@/components/card/CardComponent.vue';
 import SelectComponentVue from '@/components/select/SelectComponent.vue';
+import { useCelebritiesStore } from '@/stores/celebrities';
+import { data } from '@/data.json';
 
 describe('+ HeroComponent unit tests', () => {
 
@@ -18,6 +20,9 @@ describe('+ HeroComponent unit tests', () => {
         })],
       },
     });
+
+    const store = useCelebritiesStore();
+    store.celebrities = data;
   });
 
   it('should render as expected', () => {
