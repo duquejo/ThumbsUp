@@ -19,6 +19,7 @@ export default mergeConfig(
           '**/assets/**',
           '**/interfaces/*.ts',
           '**/*.d.ts',
+          'tests/integration/**'
         ]
       },
       root: fileURLToPath(new URL('./', import.meta.url))
