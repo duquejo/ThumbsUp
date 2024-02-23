@@ -3,7 +3,7 @@ import { VueWrapper, shallowMount } from '@vue/test-utils';
 import HeroComponentVue from '@/components/hero/HeroComponent.vue';
 import { createTestingPinia } from '@pinia/testing';
 import { useCelebritiesStore } from '@/stores/useCelebritiesStore';
-import { data } from '@/data.json';
+import { data } from '@/shared/data.json';
 
 describe('+ HeroComponent unit tests', () => {
 

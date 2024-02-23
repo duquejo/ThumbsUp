@@ -5,7 +5,7 @@ import GridComponentVue from '@/components/grid/GridComponent.vue';
 import CardComponentVue from '@/components/card/CardComponent.vue';
 import SelectComponentVue from '@/components/select/SelectComponent.vue';
 import { useCelebritiesStore } from '@/stores/useCelebritiesStore';
-import { data } from '@/data.json';
+import { data } from '@/shared/data.json';
 
 describe('+ HeroComponent unit tests', () => {
 

@@ -40,7 +40,7 @@ describe('+ getCelebrities', () => {
 
     expect(result).toBe(expectedMessage);
     expect(mocks.get).toHaveBeenCalled();
-    expect(mocks.get).toHaveBeenCalledWith('/list');
+    expect(mocks.get).toHaveBeenCalledWith('');
   });
 
   it('should post a valid vote to the API', async () => {
@@ -51,7 +51,7 @@ describe('+ getCelebrities', () => {
 
     expect(result).toBe(expectedMessage);
     expect(mocks.post).toHaveBeenCalled();
-    expect(mocks.post).toHaveBeenCalledWith('/save', { id: String(params.id), vote: params.vote});
+    expect(mocks.post).toHaveBeenCalledWith('', { id: String(params.id), vote: params.vote});
   });
 
   it('should catch any error from the getCelebrities API', async () => {
@@ -73,7 +73,7 @@ describe('+ getCelebrities', () => {
     }
     
     expect(mocks.get).toHaveBeenCalled();
-    expect(mocks.get).toHaveBeenCalledWith('/list');
+    expect(mocks.get).toHaveBeenCalledWith('');
   });
 
   it('should catch any error from the postCelebrityVote API', async () => {
@@ -96,6 +96,6 @@ describe('+ getCelebrities', () => {
     }
     
     expect(mocks.post).toHaveBeenCalled();
-    expect(mocks.post).toHaveBeenCalledWith('/save', { id: String(params.id), vote: params.vote});
+    expect(mocks.post).toHaveBeenCalledWith('', { id: String(params.id), vote: params.vote});
   });
 });
