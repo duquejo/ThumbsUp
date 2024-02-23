@@ -4,14 +4,14 @@
     <div class="card__container">
       <span class="card__icon">
         <button
-          v-if="getCelebrityStatusById(props.celebrity.id) === 'positive'"
+          v-if="getCelebrityStatusById === 'positive'"
           class="icon-button card-thumb-button"
           aria-label="thumbs up"
         >
           <img src="/assets/img/thumbs-up.svg" alt="thumbs up" />
         </button>
         <button
-          v-else-if="getCelebrityStatusById(props.celebrity.id) == 'negative'"
+          v-else-if="getCelebrityStatusById == 'negative'"
           class="icon-button card-thumb-button"
           aria-label="thumbs down"
         >
@@ -50,9 +50,6 @@ import { computed } from 'vue';
 import type { ICelebrity } from '@/interfaces/Celebrities';
 import ThumbGaugeComponent from '@/components/thumb-gauge/ThumbGaugeComponent.vue';
 import ThumbButtonsComponent from '@/components/thumb-buttons/ThumbButtonsComponent.vue';
-import { useCelebritiesStore } from '@/stores/celebrities';
-
-const { getCelebrityStatusById } = useCelebritiesStore();
 
 interface Props {
   celebrity: ICelebrity;
@@ -71,6 +68,10 @@ const cardBackground = computed(() => ({
   background: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), no-repeat url('../assets/img/${props.celebrity.picture}.png')`,
   backgroundSize: 'cover',
 }));
+
+const getCelebrityStatusById = computed(() => {
+  return props.celebrity.votes.positive >= props.celebrity.votes.negative ? 'positive' : 'negative';
+});
 </script>
 
 <style scoped lang="scss">
@@ -82,10 +83,14 @@ const cardBackground = computed(() => ({
   max-width: 300px;
   justify-content: flex-end;
   position: relative;
-  row-gap: 1.2rem;
+  row-gap: 1.5rem;
 
   @media all and (min-width: 767px) {
     max-width: 100%;
+    row-gap: 0.8rem;
+  }
+
+  @media all and (min-width: 1100px) {
     row-gap: 1.5rem;
   }
 
@@ -102,7 +107,7 @@ const cardBackground = computed(() => ({
 
   &__icon {
     flex-grow: 0;
-    height: 1.875rem;
+    height: 30px;
     pointer-events: none;
   }
 
