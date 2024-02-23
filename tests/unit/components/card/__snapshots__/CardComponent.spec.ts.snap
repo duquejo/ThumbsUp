@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`+ CardComponent unit tests > should render properly 1`] = `
-"<li data-v-d766fe8c="" class="card card__background" style="background-size: cover;">
+"<li data-v-d766fe8c="" class="card card__background" style="background-size: cover; background-position: center;">
   <!-- General card container -->
   <div data-v-d766fe8c="" class="card__container"><span data-v-d766fe8c="" class="card__icon"><button data-v-d766fe8c="" class="icon-button card-thumb-button" aria-label="thumbs up"><img data-v-d766fe8c="" src="/assets/img/thumbs-up.svg" alt="thumbs up"></button></span><!-- Central card container -->
     <div data-v-d766fe8c="" class="card__content">
@@ -21,7 +21,7 @@ exports[`+ CardComponent unit tests > should render properly 1`] = `
 `;
 
 exports[`+ CardComponent unit tests > should set by default grid mode - Layered class added 1`] = `
-"<li data-v-d766fe8c="" class="card card__background layered" style="background-size: cover;">
+"<li data-v-d766fe8c="" class="card card__background layered" style="background-size: cover; background-position: center;">
   <!-- General card container -->
   <div data-v-d766fe8c="" class="card__container"><span data-v-d766fe8c="" class="card__icon"><button data-v-d766fe8c="" class="icon-button card-thumb-button" aria-label="thumbs up"><img data-v-d766fe8c="" src="/assets/img/thumbs-up.svg" alt="thumbs up"></button></span><!-- Central card container -->
     <div data-v-d766fe8c="" class="card__content">

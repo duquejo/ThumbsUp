@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { setActivePinia, createPinia, storeToRefs } from 'pinia';
 import { useCelebritiesStore } from '@/stores/useCelebritiesStore';
-import { data } from '@/data.json';
+import { data } from '@/shared/data.json';
 
 describe('+ useCelebritiesStore unit tests', () => {
 

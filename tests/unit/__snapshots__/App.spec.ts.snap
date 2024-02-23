@@ -2,7 +2,7 @@
 
 exports[`+ AppVue unit test > should render properly 1`] = `
 "<transition-stub data-v-7a7a37b1="" name="slide-fade" appear="false" persisted="true" css="true">
-  <div data-v-7a7a37b1="" style="">
+  <div data-v-7a7a37b1="" style="display: none;">
     <navigation-component-stub data-v-7a7a37b1=""></navigation-component-stub>
     <hero-component-stub data-v-7a7a37b1=""></hero-component-stub>
     <general-layout-stub data-v-7a7a37b1=""></general-layout-stub>

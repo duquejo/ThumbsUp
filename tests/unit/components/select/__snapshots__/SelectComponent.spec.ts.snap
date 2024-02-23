@@ -1,22 +1,22 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`+ SelectComponent unit tests > should render properly 1`] = `
-"<div data-v-f16194f1="" class="layout-select" tabindex="0">
+"<div data-v-f16194f1="" class="layout-select" tabindex="0" role="select">
   <div data-v-f16194f1="" class="layout-select__selected">one</div>
   <div data-v-f16194f1="" class="layout-select__items selectHide">
-    <div data-v-f16194f1="">one</div>
-    <div data-v-f16194f1="">two</div>
-    <div data-v-f16194f1="">three</div>
+    <div data-v-f16194f1="" role="option">one</div>
+    <div data-v-f16194f1="" role="option">two</div>
+    <div data-v-f16194f1="" role="option">three</div>
   </div>
 </div>"
 `;
 
 exports[`+ SelectComponent unit tests > should render the default props 1`] = `
-"<div data-v-f16194f1="" class="layout-select" tabindex="0">
+"<div data-v-f16194f1="" class="layout-select" tabindex="0" role="select">
   <div data-v-f16194f1="" class="layout-select__selected"></div>
   <div data-v-f16194f1="" class="layout-select__items selectHide">
-    <div data-v-f16194f1="">foo</div>
-    <div data-v-f16194f1="">bar</div>
+    <div data-v-f16194f1="" role="option">foo</div>
+    <div data-v-f16194f1="" role="option">bar</div>
   </div>
 </div>"
 `;

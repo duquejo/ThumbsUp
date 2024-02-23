@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { shallowMount } from '@vue/test-utils';
 import SelectComponentVue from '@/components/select/SelectComponent.vue';
+import { nextTick } from 'vue';
 
 describe('+ SelectComponent unit tests', () => {
 
@@ -64,10 +65,10 @@ describe('+ SelectComponent unit tests', () => {
     });
 
     const opt = wrapper.findAll('.layout-select__items div');
-    const selected = wrapper.find('.layout-select__selected');
-
+    
     await opt[2].trigger('click');
-
+    
+    const selected = wrapper.find('.layout-select__selected');
     expect(selected.text()).toBe(allProperties.options[2]);
   });
 
