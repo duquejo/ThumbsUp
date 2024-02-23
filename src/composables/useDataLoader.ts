@@ -6,16 +6,16 @@ import { getCelebrities } from '@/api/celebritiesApi';
 
 const retrieveDataSource = async () => {
   let sourceData;
-  if ( import.meta.env.VITE_CELEBRITIES_URL !== '' ) {
+  if (import.meta.env.VITE_CELEBRITIES_URL !== '') {
     sourceData = await getCelebrities();
   } else {
     sourceData = (await import('@/shared/data.json')).data;
   }
-  if(!sourceData) {
+  if (!sourceData) {
     return [];
   }
   return sourceData;
-}
+};
 
 const useDataLoader = () => {
   const { getItem } = useLocalStorage('celebrities');
@@ -28,7 +28,7 @@ const useDataLoader = () => {
     loadData: async () => {
       const cacheData: ICelebrity[] = getItem<ICelebrity>();
       if (cacheData.length === 0) {
-        store.setCelebritiesState( await retrieveDataSource());
+        store.setCelebritiesState(await retrieveDataSource());
       } else {
         store.setCelebritiesState(cacheData);
       }
