@@ -23,7 +23,6 @@ const { isDataLoaded, loadData } = useDataLoader();
 onMounted(async () => {
   loadData();
 });
-
 </script>
 
 <style scoped>

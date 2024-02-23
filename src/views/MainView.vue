@@ -6,9 +6,9 @@
     </div>
     <div class="banner__right">
       <p class="banner__text">
-        Rule of Thumb is a crowd sourced court of public opinion where anyone and everyone can
-        speak out and speak freely. It’s easy: You share your opinion, we analyze and put the data
-        in a public report.
+        Rule of Thumb is a crowd sourced court of public opinion where anyone and everyone can speak
+        out and speak freely. It’s easy: You share your opinion, we analyze and put the data in a
+        public report.
       </p>
     </div>
     <button class="icon-button" aria-label="close">
@@ -21,9 +21,14 @@
   </aside>
   <GridComponent />
   <aside class="banner banner-bottom" role="doc-tip" aria-label="Submit a name">
-    <img srcset="/assets/img/bg-people.png 750w, /assets/img/bg-people.@2x.png 1440w"
-      sizes="(min-width: 750px) 1440px, 100vw" class="banner__background" src="/assets/img/bg-people.png" alt=""
-      role="none" />
+    <img
+      srcset="/assets/img/bg-people.png 750w, /assets/img/bg-people.@2x.png 1440w"
+      sizes="(min-width: 750px) 1440px, 100vw"
+      class="banner__background"
+      src="/assets/img/bg-people.png"
+      alt=""
+      role="none"
+    />
     <div class="banner__left">
       <h2 class="banner__heading">Is there anyone else you would want us to add?</h2>
     </div>

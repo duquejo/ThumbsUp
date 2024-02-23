@@ -43,7 +43,7 @@ const props = withDefaults(defineProps<Props>(), {
 const calculatedVotes = computed(() => {
   const totalOfVotes = props.votes.positive + props.votes.negative;
 
-  if( totalOfVotes === 0 ) {
+  if (totalOfVotes === 0) {
     return {
       positive: '0%',
       negative: '0%',

@@ -7,7 +7,12 @@
       </div>
     </div>
     <ol class="main__container" :class="layeredClasses">
-      <CardComponent v-if="celebrities" v-for="celeb in celebrities" :celebrity="celeb" :is-layered="selected === 'list'" />
+      <CardComponent
+        v-if="celebrities"
+        v-for="celeb in celebrities"
+        :celebrity="celeb"
+        :is-layered="selected === 'list'"
+      />
     </ol>
   </main>
 </template>
@@ -21,7 +26,6 @@ import SelectComponent from '@/components/select/SelectComponent.vue';
 
 const store = useCelebritiesStore();
 const { celebrities } = storeToRefs(store);
-;
 const selected = ref<string>('grid');
 
 const layeredClasses = computed(() => ({

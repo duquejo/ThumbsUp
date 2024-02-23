@@ -2,11 +2,11 @@ import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import type { ICelebrity } from '@/interfaces/Celebrities';
 import useLocalStorage from '../composables/useLocalStorage';
+import { postCelebrityVote } from '@/api/celebritiesApi';
 
 export type VoteTypes = 'positive' | 'negative';
 
 export const useCelebritiesStore = defineStore('celebrities', () => {
-
   const { saveItem } = useLocalStorage('celebrities');
 
   const celebrities = ref<ICelebrity[]>([]);
@@ -14,7 +14,7 @@ export const useCelebritiesStore = defineStore('celebrities', () => {
   return {
     // State
     celebrities,
-    
+
     // Actions
     celebrityVote: (id: number, vote: VoteTypes) => {
       celebrities.value.map((celeb: ICelebrity) => {
@@ -29,6 +29,7 @@ export const useCelebritiesStore = defineStore('celebrities', () => {
         }
         return celeb;
       });
+      postCelebrityVote(id, vote);
       saveItem(celebrities.value);
     },
 
