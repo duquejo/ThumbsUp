@@ -1,25 +1,23 @@
-import { computed, reactive, type ComputedRef } from 'vue';
+import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import { data } from '@/data.json';
 import type { ICelebrity } from '@/interfaces/Celebrities';
+import useLocalStorage from '../composables/useLocalStorage';
 
 export type VoteTypes = 'positive' | 'negative';
 
 export const useCelebritiesStore = defineStore('celebrities', () => {
-  const celebrities = reactive<ICelebrity[]>(data);
 
-  const getRandomCelebrity = computed<ICelebrity>(() => {
-    const rand = Math.floor(Math.random() * celebrities.length);
-    return celebrities[rand];
-  });
+  const { saveItem } = useLocalStorage('celebrities');
+
+  const celebrities = ref<ICelebrity[]>([]);
 
   return {
     // State
-    celebrities, 
+    celebrities,
     
     // Actions
     celebrityVote: (id: number, vote: VoteTypes) => {
-      celebrities.map((celeb: ICelebrity) => {
+      celebrities.value.map((celeb: ICelebrity) => {
         if (celeb.id === id) {
           return {
             ...celeb,
@@ -31,15 +29,12 @@ export const useCelebritiesStore = defineStore('celebrities', () => {
         }
         return celeb;
       });
+      saveItem(celebrities.value);
     },
 
-    getCelebrityStatusById: (id: number) => {
-      const celebrity = celebrities.find((celeb: ICelebrity) => celeb.id === id);
-      if (!celebrity) throw new Error('Celebrity not found');
-      return celebrity.votes.positive >= celebrity.votes.negative ? 'positive' : 'negative';
+    setCelebritiesState: (newCelebs: ICelebrity[]) => {
+      celebrities.value = newCelebs;
+      saveItem(newCelebs);
     },
-    
-    // Getters
-    getRandomCelebrity
   };
 });

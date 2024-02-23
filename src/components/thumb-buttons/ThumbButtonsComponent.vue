@@ -41,7 +41,7 @@ import EyebrowComponent from '@/components/eyebrow/EyebrowComponent.vue';
 import type { VoteTypes } from '@/stores/celebrities';
 import { useCelebritiesStore } from '@/stores/celebrities';
 
-const { celebrityVote } = useCelebritiesStore();
+const store = useCelebritiesStore();
 
 interface Props {
   lastUpdated: string;
@@ -70,7 +70,7 @@ const onHandleSubmit = () => {
 
   if (vote.value) {
     state.value = 'done';
-    celebrityVote(props.id, vote.value);
+    store.celebrityVote(props.id, vote.value);
   }
 };
 

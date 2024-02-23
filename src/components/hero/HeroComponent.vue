@@ -1,15 +1,15 @@
 <template>
-  <header class="hero" v-if="highlightedCeleb">
+  <header class="hero" v-if="getRandomCelebrity">
     <img class="hero__background"
-      :srcset="`/assets/img/${highlightedCeleb.picture}.png 750w, /assets/img/${highlightedCeleb.picture}@2x.png 1440w`"
-      sizes="(min-width: 750px) 1440px, 100vw" :src="`/assets/img/${highlightedCeleb.picture}.png`" :alt="highlightedCeleb.name" />
+      :srcset="`/assets/img/${getRandomCelebrity.picture}.png 750w, /assets/img/${getRandomCelebrity.picture}@2x.png 1440w`"
+      sizes="(min-width: 750px) 1440px, 100vw" :src="`/assets/img/${getRandomCelebrity.picture}.png`" :alt="getRandomCelebrity.name" />
     <div class="max-centered">
       <div class="hero__featured-card">
         <div class="featured-card__glass-background" :style="glassImageBackground" />
         <div class="featured-card__content">
           <p class="featured-card__hairline">What's your opinion on</p>
-          <h2 class="featured-card__title" v-text="highlightedCeleb.name" />
-          <p class="featured-card__desc" v-text="highlightedCeleb.description" />
+          <h2 class="featured-card__title" v-text="getRandomCelebrity.name" />
+          <p class="featured-card__desc" v-text="getRandomCelebrity.description" />
           <p class="featured-card__more-info">
             <a :href="wikipediaSearch" target="_blank">
               <svg class="featured-card__more-info-icon" preserveAspectRatio="xMidYMid meet"
@@ -45,17 +45,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { useCelebritiesStore } from '@/stores/celebrities';
 import type { ICelebrity } from '@/interfaces/Celebrities';
+import { storeToRefs } from 'pinia'
 
-const { getRandomCelebrity } = useCelebritiesStore();
+const store = useCelebritiesStore();
+const { celebrities } = storeToRefs(store);
 
-const highlightedCeleb = ref<ICelebrity>(getRandomCelebrity);
+const getRandomCelebrity = computed<ICelebrity>(() => {
+  return celebrities.value[Math.floor(Math.random() * celebrities.value.length)];
+});
 
-const wikipediaSearch = computed(() => `https://en.wikipedia.org/wiki/${highlightedCeleb.value.name}`);
+const wikipediaSearch = computed(() => `https://en.wikipedia.org/wiki/${getRandomCelebrity.value.name}`);
 
 const glassImageBackground = computed(() => ({
-  background: `center no-repeat linear-gradient(var(--color-dark-background), var(--color-dark-background)), -25vw 0/160vw no-repeat url('../assets/img/${highlightedCeleb.value.picture}.png')`,
+  background: `center no-repeat linear-gradient(var(--color-dark-background), var(--color-dark-background)), -25vw 0/160vw no-repeat url('../assets/img/${getRandomCelebrity.value.picture}.png')`,
 }));
 </script>

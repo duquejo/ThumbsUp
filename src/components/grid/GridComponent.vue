@@ -7,21 +7,21 @@
       </div>
     </div>
     <ol class="main__container" :class="layeredClasses">
-      <CardComponent v-for="celeb in celebs" :celebrity="celeb" :is-layered="selected === 'list'" />
+      <CardComponent v-if="celebrities" v-for="celeb in celebrities" :celebrity="celeb" :is-layered="selected === 'list'" />
     </ol>
   </main>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import type { ICelebrity } from '@/interfaces/Celebrities';
-import CardComponent from '@/components/card/CardComponent.vue';
+import { storeToRefs } from 'pinia';
 import { useCelebritiesStore } from '@/stores/celebrities';
+import CardComponent from '@/components/card/CardComponent.vue';
 import SelectComponent from '@/components/select/SelectComponent.vue';
 
-const { celebrities } = useCelebritiesStore();
-
-const celebs = ref<ICelebrity[]>(celebrities);
+const store = useCelebritiesStore();
+const { celebrities } = storeToRefs(store);
+;
 const selected = ref<string>('grid');
 
 const layeredClasses = computed(() => ({
