@@ -92,7 +92,7 @@ yarn lint
 ## Are you a Docker enthusiast?
 I dockerized the application, so I'm going to give you some useful commands to execute it. (You must have Docker installed).
 
-1) Be sure you create the .env variables first. It will provide the production configuration as priority, so if you have a _.env.production_ file, it will be taken as the main configuration file, likewise the `.env` configuration will also be valid.
+1) Be sure you create the .env variables first. It will provide the production configuration as priority, so if you have a _.env.production_ file, it will be taken as the master configuration file, likewise the `.env` configuration will also be valid.
 
 2) Build the docker image.
 ```sh
@@ -121,7 +121,7 @@ So, If you want to contribute, you must follow the [GitFlow](https://nvie.com/po
 
 For the `develop` branch, through GitHub Actions, the pushed commits will be deployed into Vercel's preview stage (You can view a temporal URL for watch changes live.), the celebrities data provided will be a JSON mock.
 
-For the `main` branch, Github Actions will activate the production mode, getting all production `.env` variables and activating the AWS backend resources.
+For the `master` branch, Github Actions will activate the production mode, getting all production `.env` variables and activating the AWS backend resources.
 
 ## How did I develop the backend service?
 I got it following a quick (but efficient) microservices architecture. If you want more details, visit [the backend repository](https://github.com/duquejo/ThumbsUp_backend):
