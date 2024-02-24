@@ -13,6 +13,7 @@
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "test": "vitest --watch --silent --exclude **/integration/**",
+    "test:ci": "vitest --coverage --silent",
     "test:coverage": "vitest --coverage --silent --exclude **/integration/**",
     "test:integration": "vitest related ./tests/integration/integration.spec.ts",
     "build-only": "vite build",
