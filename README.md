@@ -29,7 +29,7 @@ Please visit https://thumbsup.duquejo.com/
 
 # Getting started (Local development)
 
-1) Clone the (repository)[https://github.com/duquejo/ThumbsUp] and be sure to have Node 18.X version. (...or Semver will warn you 👀).
+1) Clone the [repository](https://github.com/duquejo/ThumbsUp) and be sure to have Node 18.X version. (...or Semver will warn you 👀).
 ```sh
 yarn
 ```
