@@ -123,8 +123,8 @@ For the `develop` branch, through GitHub Actions, the pushed commits will be dep
 
 For the `main` branch, Github Actions will activate the production mode, getting all production `.env` variables and activating the AWS backend resources.
 
-## How do I develop the backend service?
-I got it following a quick (but efficient) microservices architecture. (If you want more details, visit [the backend repository]((https://github.com/duquejo/ThumbsUp_backend))):
+## How did I develop the backend service?
+I got it following a quick (but efficient) microservices architecture. If you want more details, visit [the backend repository](https://github.com/duquejo/ThumbsUp_backend):
 
 ![ThumbsUp microservices architecture](./architecture.png)
 
