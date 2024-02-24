@@ -29,90 +29,120 @@ Please visit https://thumbsup.duquejo.com/
 
 # Getting started (Local development)
 
-1) Clone the [repository](https://github.com/duquejo/ThumbsUp) and be sure to have Node 18.X version. (...or Semver will warn you 👀).
-```sh
-yarn
-```
+## Initial requisites
+1) Install `yarn` for managing node dependencies easily. If you don't have it installed, you can follow this optional steps:
+    ```sh
+    npm install --global yarn
+    ```
 
-2) Install required dependencies.
-```sh
-yarn install
-```
+1) Clone the [repository](https://github.com/duquejo/ThumbsUp) and be sure to have NodeJS 18.X version. (...or Semver will warn you 👀).
+    ```sh
+    yarn
+    ```
+
+- (Optional) If Semver warned you, don't worry!. Please follow this instructions:
+You must nivelate the NodeJS local version at least the 18.X version, so, In my case, I use (nvm)[https://github.com/nvm-sh/nvm] for that. If you have Windows, please use this (distribution)[https://github.com/coreybutler/nvm-windows], is easier than it sounds.
+    - Once `nvm` is installed, download the required version using this commands:
+
+    ```sh
+    # Install NodeJS 18.{any} version
+    nvm install 18
+    # Apply version (specify the downloaded one)
+    nvm use 18.{sub}
+    # And... verify if it was applied.
+    nvm current
+    ```
+
+2) Once we pass the Semver NodeJS requirements, please install the required dependencies:
+    ```sh
+    yarn install
+    ```
 
 3) Copy `.env.sample` file and rename it as `.env` local development (it will work for whole enviroments) if you want to use the local mock, Leave it unchanged. The enviroments available are:
     - `.env`: local development (and the general enviroments fallback source).
     - `.env.test`: testing enviroment resources (If you want to run the integration tests).
     - `.env.production`: production enviroment resources (Connecting HTTP resources with the application).
-```sh
-# Celebrities listing endpoint (retrieves all celebs)
-VITE_CELEBRITIES_URL=
+    
+    **Application .env variables**
+    ```sh
+    # Celebrities listing endpoint (retrieves all celebs)
+    VITE_CELEBRITIES_URL=
 
-# Vote system endpoint (post a nice vote for your selected celeb)
-VITE_VOTES_URL=
+    # Vote system endpoint (post a nice vote for your selected celeb)
+    VITE_VOTES_URL=
 
-# Site title URL (If you want a cool guy/gal).
-VITE_APP_TITLE=
-```
+    # Site title URL (If you want a cool guy/gal).
+    VITE_APP_TITLE=
+    ```
 
 4. Enable the vite development mode.
-```sh
-yarn dev
-```
+    ```sh
+    yarn dev
+    ```
 
 5. Go to the vite provided development URL with the following URL: `http://localhost:8080`.
 
 ## Application tests
 
 - For running unit tests with vitest in watch mode, use:
-```sh
-yarn test
-```
+    ```sh
+    yarn test
+    ```
 
 - For retrieve unit tests coverage, use:
-```sh
-yarn test:coverage
-```
+    ```sh
+    yarn test:coverage
+    ```
 
 - For running integration tests, use:
+    ```sh
+    yarn test:integration
+    ```
+
+**NOTE** The integration tests only will be executed if all .env variables exists, the .env stage is "test" or "production" and the application endpoints are actually a valid URLs. So, you can use this endpoints:
+
 ```sh
-yarn test:integration
+# These endpoints are temporal.
+VITE_CELEBRITIES_URL=https://954xjitjr9.execute-api.us-east-2.amazonaws.com/v1/list
+VITE_VOTES_URL=https://954xjitjr9.execute-api.us-east-2.amazonaws.com/v1/save
 ```
 
 ## Other commands
 - Code formatting
-```sh
-yarn prettier
-```
+    ```sh
+    yarn prettier
+    ```
 
 - Code Linting
-```sh
-yarn lint
-```
+    ```sh
+    yarn lint
+    ```
 
 ## Are you a Docker enthusiast?
 I dockerized the application, so I'm going to give you some useful commands to execute it. (You must have Docker installed).
 
-1) Be sure you create the .env variables first. It will provide the production configuration as priority, so if you have a _.env.production_ file, it will be taken as the master configuration file, likewise the `.env` configuration will also be valid.
+0) Install docker desktop or other solutions like Docker Rancher and start its processes.
+
+1) Be sure you create the required `.env` variables first. It will provide the production configuration as priority, so if you have a _.env.production_ file, it will be taken as the master configuration file, likewise the `.env` configuration will also be valid.
 
 2) Build the docker image.
-```sh
-docker build -t thumbsup .
-```
+    ```sh
+    docker build -t thumbsup .
+    ```
 
 3) Run the dockerized image and port it to the 8080 port:
-```sh
-docker run -p 8080:8080 thumbsup
-```
-(OR) run it with the detached mode enabled:
-```sh
-docker run -d -p 8080:8080 thumbsup
-```
+    ```sh
+    docker run -p 8080:8080 thumbsup
+
+    # (OR) run it with the detached mode enabled:
+    docker run -d -p 8080:8080 thumbsup
+    ```
 
 4) If you want to enable an interactive sh interface while running the docker container, use:
-```sh
-# Tip: You can use `docker ps` for getting the running application container ID.
-docker exec -it {container_id} sh
-```
+    ```sh
+    # Tip: You can use `docker ps` for getting the running application container ID.
+    docker exec -it {container_id} sh
+    ```
 
 ## Continous Integration - Deployment
 This site is production-friendly / staging-friendly and it's configured to use Vercel and GitHub Actions for CI/CD.
